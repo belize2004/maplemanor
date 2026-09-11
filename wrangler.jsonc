@@ -1,0 +1,7 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "maplemanorsb",
+  "main": "dist/worker.js",
+  "compatibility_date": "2024-01-01",
+  "workers_dev": true
+}
