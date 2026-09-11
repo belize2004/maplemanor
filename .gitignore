@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment & Secrets
+.env
+.env.*
+*.log
+
+# Cache & Temporary files
+.DS_Store
+__pycache__/
+*.pyc
+
+# Local scratch
+scratch/
