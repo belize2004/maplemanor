@@ -1615,11 +1615,8 @@
         item.onclick = () => openLightbox(photo.originalIdx);
         item.innerHTML = `
           <img src="${photo.url}" alt="${photo.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/20 to-transparent opacity-90 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-300 mb-0.5">${photo.catLabel}</span>
-            <span class="text-xs sm:text-sm font-semibold text-white group-hover:text-amber-200 transition line-clamp-1">${photo.title}</span>
-          </div>
-          <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300"></div>
+          <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs shadow-md">
             <i class="fa-solid fa-expand"></i>
           </div>
         `;
