@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "maplemanorsb",
+  "account_id": "c1ed3a128361abb909218d88d7f72492",
   "main": "dist/worker.js",
   "compatibility_date": "2024-01-01",
   "workers_dev": true
