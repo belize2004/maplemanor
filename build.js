@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const srcHtmlPath = path.join(__dirname, "index.html");
+const floorPlanHtmlPath = path.join(__dirname, "floor-plan.html");
 const distDir = path.join(__dirname, "dist");
 const deployDir = path.join(__dirname, "deploy_site");
 
@@ -15,8 +16,20 @@ if (!fs.existsSync(deployDir)) {
 fs.copyFileSync(srcHtmlPath, path.join(deployDir, "index.html"));
 const htmlContent = fs.readFileSync(srcHtmlPath, "utf8");
 
+let floorPlanContent = "";
+if (fs.existsSync(floorPlanHtmlPath)) {
+  fs.copyFileSync(floorPlanHtmlPath, path.join(deployDir, "floor-plan.html"));
+  const floorPlanSubdir = path.join(deployDir, "floor-plan");
+  if (!fs.existsSync(floorPlanSubdir)) {
+    fs.mkdirSync(floorPlanSubdir, { recursive: true });
+  }
+  fs.copyFileSync(floorPlanHtmlPath, path.join(floorPlanSubdir, "index.html"));
+  floorPlanContent = fs.readFileSync(floorPlanHtmlPath, "utf8");
+}
+
 const workerJs = `
 const HTML_CONTENT = ${JSON.stringify(htmlContent)};
+const FLOOR_PLAN_CONTENT = ${JSON.stringify(floorPlanContent)};
 let MEMORY_COMMENTS = [];
 
 export default {
@@ -79,6 +92,15 @@ export default {
       });
     }
 
+    if (url.pathname === "/floor-plan" || url.pathname === "/floor-plan/" || url.pathname === "/floor-plan.html") {
+      return new Response(FLOOR_PLAN_CONTENT, {
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-cache, no-store, must-revalidate"
+        }
+      });
+    }
+
     return new Response(HTML_CONTENT, {
       headers: {
         "content-type": "text/html; charset=utf-8",
@@ -90,4 +112,4 @@ export default {
 `;
 
 fs.writeFileSync(path.join(distDir, "worker.js"), workerJs, "utf8");
-console.log("✓ Successfully generated dist/worker.js and deploy_site/index.html");
+console.log("✓ Successfully generated dist/worker.js and deploy_site assets");

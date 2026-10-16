@@ -203,6 +203,7 @@
       <!-- Navigation Links -->
       <nav class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 text-xs xl:text-sm font-semibold text-stone-600">
         <a href="#about" class="hover:text-amber-700 transition py-1 whitespace-nowrap">The Estate</a>
+        <a href="/floor-plan" class="hover:text-amber-700 text-amber-800 font-bold transition py-1 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-compass-drafting text-xs text-amber-600"></i> Floor Plan</a>
         <a href="#gallery" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Photos (42)</a>
         <a href="#rooms" class="hover:text-amber-700 transition py-1 whitespace-nowrap">8 Bedrooms</a>
         <a href="#gameroom" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Game Room</a>
@@ -232,6 +233,7 @@
     <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-stone-200/80 bg-white/98 backdrop-blur-xl px-4 py-4 shadow-xl">
       <div class="grid grid-cols-2 gap-2 text-sm font-semibold text-stone-700">
         <a href="#about" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-church text-amber-600 text-xs"></i> The Estate</a>
+        <a href="/floor-plan" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg bg-amber-50 text-amber-800 font-bold transition flex items-center gap-2"><i class="fa-solid fa-compass-drafting text-amber-600 text-xs"></i> Floor Plan &amp; Tour</a>
         <a href="#gallery" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-images text-amber-600 text-xs"></i> Photos</a>
         <a href="#rooms" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-bed text-amber-600 text-xs"></i> 8 Bedrooms</a>
         <a href="#gameroom" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-dice text-amber-600 text-xs"></i> Game Room</a>
@@ -514,10 +516,15 @@
 
         <!-- 3-Floor Spatial Architecture & 8-Bedroom Breakdown -->
         <section id="rooms" class="space-y-6">
-          <div class="border-b border-stone-200 pb-4">
-            <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Floor Plans &amp; Spatial Layout</span>
-            <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900 mt-1">3 Full Levels • 8 Bedrooms • 7.5 Bathrooms</h2>
-            <p class="text-xs sm:text-sm text-stone-500 mt-1">Engineered for large multi-generational families and retreats with private en-suite bathrooms for couples.</p>
+          <div class="border-b border-stone-200 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Floor Plans &amp; Spatial Layout</span>
+              <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-900 mt-1">3 Full Levels • 8 Bedrooms • 7.5 Bathrooms</h2>
+              <p class="text-xs sm:text-sm text-stone-500 mt-1">Engineered for large multi-generational families and retreats with private en-suite bathrooms for couples.</p>
+            </div>
+            <a href="/floor-plan" class="inline-flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200/80 text-xs font-bold px-3.5 py-2 rounded-xl transition shadow-sm shrink-0">
+              <i class="fa-solid fa-compass-drafting text-amber-700"></i> View Full Floor Plan &amp; Tour &rarr;
+            </a>
           </div>
 
           <!-- Floor Tabs Switcher -->
