@@ -28,29 +28,58 @@
       overflow-x: clip;
     }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       overflow-x: clip;
       max-width: 100vw;
+      -webkit-font-smoothing: antialiased;
     }
     .font-serif {
       font-family: 'Playfair Display', Georgia, serif;
     }
     .hero-gradient {
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.40) 0%, rgba(15, 23, 42, 0.70) 50%, rgba(15, 23, 42, 0.90) 100%);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.40) 0%, rgba(15, 23, 42, 0.70) 50%, rgba(15, 23, 42, 0.92) 100%);
     }
     .badge-blur {
-      backdrop-filter: blur(16px);
-      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(15, 23, 42, 0.70);
+    }
+    .frosted-bar {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.92);
     }
     .tab-btn.active {
       background-color: #b45309;
       color: #ffffff;
-      box-shadow: 0 4px 6px -1px rgba(180, 83, 9, 0.3);
+      box-shadow: 0 4px 8px -1px rgba(180, 83, 9, 0.25);
     }
     .blueprint-tab.active {
       background-color: #0f172a;
       color: #ffffff;
-      border-color: #0f172a;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+    .segmented-control {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      padding: 3px;
+    }
+    .segment-btn {
+      border-radius: 9999px;
+      transition: all 0.15s ease-in-out;
+    }
+    .segment-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    .segment-btn:not(.active) {
+      color: #64748b;
+    }
+    .segment-btn:not(.active):hover {
+      color: #0f172a;
     }
   </style>
 
@@ -75,60 +104,60 @@
   }
   </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-600 selection:text-white pb-20 lg:pb-0">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-600 selection:text-white pb-24 lg:pb-0">
 
   <!-- Top Direct Booking Announcement Bar -->
-  <div class="bg-stone-900 text-amber-100 text-[11px] sm:text-sm py-1.5 px-2 sm:px-4 text-center font-medium flex justify-center items-center gap-1.5 sm:gap-3 border-b border-amber-900/30">
-    <span class="inline-flex items-center gap-1.5 bg-amber-700/90 border border-amber-600/60 px-2 py-0.5 rounded-full text-amber-100 text-[11px] sm:text-xs uppercase tracking-wider font-bold shrink-0">
-      <i class="fa-solid fa-tag text-[10px]"></i> Direct Booking
+  <div class="bg-stone-900 text-amber-100 text-xs sm:text-sm py-2 px-3 sm:px-4 text-center font-medium flex justify-center items-center gap-2 sm:gap-3 border-b border-amber-900/30">
+    <span class="inline-flex items-center gap-1.5 bg-amber-700/90 border border-amber-600/60 px-2.5 py-0.5 rounded-full text-amber-100 text-xs uppercase tracking-wider font-bold shrink-0">
+      <i class="fa-solid fa-tag text-[11px]"></i> Direct Booking
     </span>
-    <span class="hidden sm:inline">Book direct for guaranteed lowest rates &amp; <strong>0% OTA platform service fees</strong>.</span>
+    <span class="hidden sm:inline">Book direct for guaranteed lowest rates &amp; <strong>0% OTA platform traveler fees</strong>.</span>
     <span class="sm:hidden text-xs">Direct rates &amp; <strong>0% booking fees</strong></span>
-    <a href="tel:9203416608" class="hidden md:inline-flex items-center gap-1.5 text-amber-300 font-bold hover:text-white ml-2 transition shrink-0">
+    <a href="tel:9203416608" class="hidden md:inline-flex items-center gap-1.5 text-amber-300 font-bold hover:text-white ml-2 transition shrink-0 min-h-[36px]">
       <i class="fa-solid fa-phone text-xs"></i> (920) 341-6608
     </a>
-    <button onclick="openEmailModal(event)" class="hidden md:inline-flex items-center gap-1 text-amber-200 hover:text-white ml-2 transition shrink-0 underline decoration-amber-400/50 text-xs">
+    <button onclick="openEmailModal(event)" class="hidden md:inline-flex items-center gap-1 text-amber-200 hover:text-white ml-2 transition shrink-0 underline decoration-amber-400/50 text-xs min-h-[36px]">
       <i class="fa-regular fa-envelope text-xs"></i> Email Owners
     </button>
   </div>
 
   <!-- Navigation Header -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm transition-all duration-200">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+  <header class="sticky top-0 z-40 frosted-bar border-b border-stone-200/80 shadow-sm transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3 sm:gap-4">
       
       <!-- Brand Logo -->
-      <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0">
-        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-amber-700 via-amber-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-amber-700/20 group-hover:scale-105 transition shrink-0">
+      <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0" aria-label="Maple Manor Home">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-amber-700 via-amber-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-amber-700/20 group-hover:scale-105 transition shrink-0">
           <i class="fa-solid fa-church text-base sm:text-xl"></i>
         </div>
         <div class="min-w-0">
-          <span class="font-serif text-base sm:text-2xl font-bold tracking-tight text-stone-900 block leading-tight truncate">Maple Manor</span>
-          <span class="hidden sm:block text-[10px] sm:text-xs uppercase tracking-widest text-amber-700 font-bold truncate">Historic Sister Bay Estate • Door County, WI</span>
+          <span class="font-serif text-lg sm:text-2xl font-bold tracking-tight text-stone-900 block leading-tight truncate">Maple Manor</span>
+          <span class="hidden sm:block text-xs uppercase tracking-widest text-amber-700 font-bold truncate">Historic Sister Bay Estate • Door County, WI</span>
         </div>
       </a>
 
       <!-- Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 text-xs xl:text-sm font-semibold text-stone-600">
-        <a href="/" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Home</a>
-        <a href="/floor-plan" class="text-amber-700 font-bold border-b-2 border-amber-700 transition py-1 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-compass-drafting text-xs text-amber-600"></i> 2D Floor Plans &amp; Tour</a>
-        <a href="/#gallery" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Photos (42)</a>
-        <a href="/#rooms" class="hover:text-amber-700 transition py-1 whitespace-nowrap">8 Bedrooms</a>
-        <a href="/#gameroom" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Game Room</a>
-        <a href="/#amenities" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Amenities</a>
-        <a href="/#calendar" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Calendar</a>
-        <a href="/#reviews" class="hover:text-amber-700 transition py-1 whitespace-nowrap">Reviews</a>
-        <a href="/#faq" class="hover:text-amber-700 transition py-1 whitespace-nowrap">FAQ</a>
+      <nav class="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 text-sm font-semibold text-stone-600" aria-label="Primary Navigation">
+        <a href="/" class="hover:text-amber-700 transition py-2 whitespace-nowrap">Home</a>
+        <a href="/floor-plan" class="text-amber-700 font-bold border-b-2 border-amber-700 transition py-2 whitespace-nowrap flex items-center gap-1.5"><i class="fa-solid fa-compass-drafting text-xs text-amber-600"></i> 2D Floor Plans &amp; Tour</a>
+        <a href="/#gallery" class="hover:text-amber-700 transition py-2 whitespace-nowrap">Photos (42)</a>
+        <a href="/#rooms" class="hover:text-amber-700 transition py-2 whitespace-nowrap">8 Bedrooms</a>
+        <a href="/#gameroom" class="hover:text-amber-700 transition py-2 whitespace-nowrap">Game Room</a>
+        <a href="/#amenities" class="hover:text-amber-700 transition py-2 whitespace-nowrap">Amenities</a>
+        <a href="/#calendar" class="hover:text-amber-700 transition py-2 whitespace-nowrap">Calendar</a>
+        <a href="/#reviews" class="hover:text-amber-700 transition py-2 whitespace-nowrap">Reviews</a>
+        <a href="/#faq" class="hover:text-amber-700 transition py-2 whitespace-nowrap">FAQ</a>
       </nav>
 
       <!-- Action Buttons -->
-      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
-        <button onclick="openEmailModal(event)" class="inline-flex items-center gap-1.5 text-xs xl:text-sm font-semibold text-stone-700 hover:text-amber-700 px-2 sm:px-2.5 py-2 rounded-lg hover:bg-stone-50 transition whitespace-nowrap" title="Contact Owners">
-          <i class="fa-regular fa-envelope text-base sm:text-sm text-amber-700"></i> <span class="hidden sm:inline">Contact</span>
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <button onclick="openEmailModal(event)" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-stone-700 hover:text-amber-700 px-3 py-2.5 rounded-xl hover:bg-stone-100 transition whitespace-nowrap min-h-[44px]" title="Contact Owners">
+          <i class="fa-regular fa-envelope text-sm text-amber-700"></i> <span class="hidden sm:inline">Contact</span>
         </button>
-        <a href="/#book" class="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 hover:from-amber-800 hover:to-amber-700 text-white text-[11px] sm:text-sm font-bold px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-xl shadow-md shadow-amber-700/20 transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0 whitespace-nowrap">
+        <a href="/#book" class="inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 hover:from-amber-800 hover:to-amber-700 text-white text-xs sm:text-sm font-bold px-3.5 sm:px-5 py-2.5 rounded-xl shadow-md shadow-amber-700/20 transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0 whitespace-nowrap min-h-[44px]">
           <i class="fa-regular fa-calendar-check"></i> <span>Book Direct</span>
         </a>
-        <button id="btn-mobile-menu" onclick="toggleMobileMenu()" class="lg:hidden w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center text-sm sm:text-lg transition" aria-label="Toggle navigation menu">
+        <button id="btn-mobile-menu" onclick="toggleMobileMenu()" class="lg:hidden w-11 h-11 rounded-xl bg-stone-100 hover:bg-stone-200 active:scale-95 text-stone-700 flex items-center justify-center text-lg transition" aria-label="Toggle navigation menu">
           <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
         </button>
       </div>
@@ -137,20 +166,20 @@
     <!-- Mobile Slide-Down Navigation Menu -->
     <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-stone-200/80 bg-white/98 backdrop-blur-xl px-4 py-4 shadow-xl">
       <div class="grid grid-cols-2 gap-2 text-sm font-semibold text-stone-700">
-        <a href="/" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-house text-amber-600 text-xs"></i> Home</a>
-        <a href="/floor-plan" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg bg-amber-50 text-amber-800 font-bold transition flex items-center gap-2"><i class="fa-solid fa-compass-drafting text-amber-600 text-xs"></i> 2D Floor Plans</a>
-        <a href="/#rooms" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-bed text-amber-600 text-xs"></i> 8 Bedrooms</a>
-        <a href="/#gameroom" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-dice text-amber-600 text-xs"></i> Game Room</a>
-        <a href="/#gallery" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-images text-amber-600 text-xs"></i> Photos</a>
-        <a href="/#amenities" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-list-check text-amber-600 text-xs"></i> Amenities</a>
-        <a href="/#calendar" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-calendar-days text-amber-600 text-xs"></i> Calendar</a>
-        <a href="/#reviews" onclick="toggleMobileMenu(false)" class="p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2"><i class="fa-solid fa-star text-amber-500 text-xs"></i> Reviews</a>
+        <a href="/" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-house text-amber-600 text-xs"></i> Home</a>
+        <a href="/floor-plan" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl bg-amber-50 text-amber-800 font-bold transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-compass-drafting text-amber-600 text-xs"></i> 2D Floor Plans</a>
+        <a href="/#rooms" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-bed text-amber-600 text-xs"></i> 8 Bedrooms</a>
+        <a href="/#gameroom" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-dice text-amber-600 text-xs"></i> Game Room</a>
+        <a href="/#gallery" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-images text-amber-600 text-xs"></i> Photos</a>
+        <a href="/#amenities" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-list-check text-amber-600 text-xs"></i> Amenities</a>
+        <a href="/#calendar" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-calendar-days text-amber-600 text-xs"></i> Calendar</a>
+        <a href="/#reviews" onclick="toggleMobileMenu(false)" class="p-3 rounded-xl hover:bg-amber-50 hover:text-amber-800 transition flex items-center gap-2 min-h-[44px]"><i class="fa-solid fa-star text-amber-500 text-xs"></i> Reviews</a>
       </div>
       <div class="pt-3 mt-3 border-t border-stone-100 flex items-center justify-between">
-        <button onclick="toggleMobileMenu(false); openEmailModal(event);" class="text-xs font-semibold text-amber-800 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-left transition">
+        <button onclick="toggleMobileMenu(false); openEmailModal(event);" class="text-xs font-semibold text-amber-800 bg-amber-50 hover:bg-amber-100 px-3.5 py-2.5 rounded-xl flex items-center gap-2 text-left transition min-h-[44px]">
           <i class="fa-regular fa-envelope text-amber-700"></i> Contact Owners
         </button>
-        <a href="/#book" onclick="toggleMobileMenu(false)" class="text-xs font-bold text-amber-700 hover:text-amber-800">
+        <a href="/#book" onclick="toggleMobileMenu(false)" class="text-xs font-bold text-amber-700 hover:text-amber-800 min-h-[44px] flex items-center">
           Book Direct (0% Fees) &rarr;
         </a>
       </div>
@@ -164,74 +193,74 @@
       <div class="absolute inset-0 hero-gradient"></div>
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full badge-blur border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold shadow-lg">
-        <i class="fa-solid fa-compass-drafting"></i> 2D Line Graphics &amp; Architectural Tour
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-blur border border-amber-500/40 text-amber-300 text-xs sm:text-sm font-semibold shadow-lg">
+        <i class="fa-solid fa-compass-drafting"></i> Architectural Floor Plans &amp; Spatial Tour
       </div>
       
       <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl mx-auto leading-tight">
-        2D Floor Plans &amp; Estate Layout
+        2D Floor Plans &amp; Estate Walkthrough
       </h1>
       
-      <p class="text-stone-300 text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed font-light">
-        Explore the authentic architectural 2D line schematics and room-by-room walkthrough of Maple Manor. Discover how 7,000 sq. ft. is distributed across 3 levels with 8 private bedrooms, 2 lofts, and 7.5 bathrooms.
+      <p class="text-stone-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed font-light">
+        Examine the authentic architectural 2D line schematics and high-resolution photography for Maple Manor. Discover how 7,000 sq. ft. of luxury living space is distributed across 3 levels with 8 private bedrooms, 2 lofts, and 7.5 bathrooms.
       </p>
 
       <!-- Key Stats Highlight Bar -->
       <div class="pt-6 max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-left">
-        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3">
-          <span class="block text-[11px] uppercase tracking-wider text-amber-300 font-bold">Total Space</span>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5">
+          <span class="block text-xs uppercase tracking-wider text-amber-300 font-bold">Total Space</span>
           <span class="text-lg sm:text-xl font-bold text-white">7,000 <span class="text-xs font-normal text-stone-300">sq ft</span></span>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3">
-          <span class="block text-[11px] uppercase tracking-wider text-amber-300 font-bold">Bedrooms</span>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5">
+          <span class="block text-xs uppercase tracking-wider text-amber-300 font-bold">Bedrooms</span>
           <span class="text-lg sm:text-xl font-bold text-white">8 <span class="text-xs font-normal text-stone-300">+ 2 Lofts</span></span>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3">
-          <span class="block text-[11px] uppercase tracking-wider text-amber-300 font-bold">Bathrooms</span>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5">
+          <span class="block text-xs uppercase tracking-wider text-amber-300 font-bold">Bathrooms</span>
           <span class="text-lg sm:text-xl font-bold text-white">7.5 <span class="text-xs font-normal text-stone-300">Baths</span></span>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3">
-          <span class="block text-[11px] uppercase tracking-wider text-amber-300 font-bold">Real Beds</span>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5">
+          <span class="block text-xs uppercase tracking-wider text-amber-300 font-bold">Real Beds</span>
           <span class="text-lg sm:text-xl font-bold text-white">Sleeps 22 <span class="text-xs font-normal text-stone-300">Beds</span></span>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3">
-          <span class="block text-[11px] uppercase tracking-wider text-amber-300 font-bold">Dining Capacity</span>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5">
+          <span class="block text-xs uppercase tracking-wider text-amber-300 font-bold">Dining Capacity</span>
           <span class="text-lg sm:text-xl font-bold text-white">20 <span class="text-xs font-normal text-stone-300">Seated</span></span>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3">
-          <span class="block text-[11px] uppercase tracking-wider text-amber-300 font-bold">Rec Lounge</span>
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5">
+          <span class="block text-xs uppercase tracking-wider text-amber-300 font-bold">Rec Lounge</span>
           <span class="text-lg sm:text-xl font-bold text-white">2,000 <span class="text-xs font-normal text-stone-300">sq ft</span></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Sticky Floor Navigation Bar -->
-  <div class="sticky top-16 sm:top-20 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm py-3 px-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 overflow-x-auto scrollbar-thin">
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        <button onclick="filterLevel('all', event)" class="tab-btn active px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-amber-700 text-white transition whitespace-nowrap">
-          <i class="fa-solid fa-house text-xs mr-1"></i> All Spaces
+  <!-- Interactive Sticky Floor Navigation Bar (HIG Segmented Appearance) -->
+  <div class="sticky top-16 sm:top-20 z-30 frosted-bar border-b border-stone-200 shadow-sm py-3 px-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 overflow-x-auto scrollbar-thin" role="tablist" aria-label="Floor Level Switcher">
+      <div class="flex items-center gap-2 shrink-0">
+        <button onclick="filterLevel('all', event)" class="tab-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-700 text-white transition active:scale-95 min-h-[44px] whitespace-nowrap" role="tab" aria-selected="true">
+          <i class="fa-solid fa-house text-xs mr-1.5"></i> All Spaces
         </button>
-        <button onclick="filterLevel('blueprints-overview', event)" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">
-          <i class="fa-solid fa-compass-drafting text-xs mr-1"></i> 2D Schematics Overview
+        <button onclick="filterLevel('blueprints-overview', event)" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition active:scale-95 min-h-[44px] whitespace-nowrap" role="tab" aria-selected="false">
+          <i class="fa-solid fa-compass-drafting text-xs mr-1.5"></i> 2D Schematics Overview
         </button>
-        <button onclick="filterLevel('first-floor', event)" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">
-          <i class="fa-solid fa-layer-group text-xs mr-1"></i> Main Floor (1)
+        <button onclick="filterLevel('first-floor', event)" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition active:scale-95 min-h-[44px] whitespace-nowrap" role="tab" aria-selected="false">
+          <i class="fa-solid fa-layer-group text-xs mr-1.5"></i> Main Floor (1)
         </button>
-        <button onclick="filterLevel('second-floor', event)" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">
-          <i class="fa-solid fa-stairs text-xs mr-1"></i> 2nd Floor &amp; Lofts
+        <button onclick="filterLevel('second-floor', event)" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition active:scale-95 min-h-[44px] whitespace-nowrap" role="tab" aria-selected="false">
+          <i class="fa-solid fa-stairs text-xs mr-1.5"></i> 2nd Floor &amp; Lofts
         </button>
-        <button onclick="filterLevel('lower-level', event)" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">
-          <i class="fa-solid fa-gamepad text-xs mr-1"></i> Lower Level Rec Room
+        <button onclick="filterLevel('lower-level', event)" class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition active:scale-95 min-h-[44px] whitespace-nowrap" role="tab" aria-selected="false">
+          <i class="fa-solid fa-gamepad text-xs mr-1.5"></i> Lower Level Rec Room
         </button>
-        <a href="#sleeping-matrix" class="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-stone-600 hover:text-amber-800 hover:bg-amber-50 transition whitespace-nowrap">
-          <i class="fa-solid fa-table-list text-xs mr-1"></i> Sleeping Matrix
+        <a href="#sleeping-matrix" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-stone-700 hover:text-amber-800 hover:bg-amber-50 transition min-h-[44px] flex items-center whitespace-nowrap">
+          <i class="fa-solid fa-table-list text-xs mr-1.5"></i> Sleeping Planner
         </a>
       </div>
 
-      <a href="/#book" class="hidden sm:inline-flex items-center gap-1.5 bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition shrink-0 shadow-sm">
+      <a href="/#book" class="hidden sm:inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shrink-0 shadow-sm active:scale-95 min-h-[44px]">
         <i class="fa-regular fa-calendar-check"></i> Check Availability
       </a>
     </div>
@@ -246,61 +275,61 @@
     <section id="blueprints-overview" class="level-section bg-stone-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl space-y-8 scroll-mt-36">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-stone-800 pb-6">
         <div>
-          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-amber-400 mb-1">
-            <i class="fa-solid fa-ruler-combined"></i> Architectural 2D Line Graphics
+          <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-amber-400 mb-1.5">
+            <i class="fa-solid fa-ruler-combined"></i> Architectural 2D Line Drawings
           </span>
-          <h2 class="font-serif text-2xl sm:text-4xl font-bold text-white">Full Estate 2D Line Drawings by Level</h2>
+          <h2 class="font-serif text-2xl sm:text-4xl font-bold text-white">Estate Level Blueprints</h2>
         </div>
-        <p class="text-xs sm:text-sm text-stone-400 max-w-lg">
-          Examine the comprehensive 2D architectural blueprint line drawings for all 3 finished levels. Click any blueprint to zoom in full-screen vector detail.
+        <p class="text-xs sm:text-sm text-stone-400 max-w-lg leading-relaxed">
+          Examine the authentic architectural 2D line schematics for all three levels of the estate. Tap any blueprint to inspect doorway locations, wall dimensions, and spatial flow in high-resolution vector detail.
         </p>
       </div>
 
       <!-- Blueprint Tabs Switcher -->
-      <div class="flex flex-wrap gap-2">
-        <button onclick="switchBlueprint('bp-main', event)" class="blueprint-tab active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-amber-600 text-white transition">
+      <div class="flex flex-wrap gap-2.5" role="tablist" aria-label="Level Blueprint Selector">
+        <button onclick="switchBlueprint('bp-main', event)" class="blueprint-tab active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-600 text-white transition active:scale-95 min-h-[44px]" role="tab" aria-selected="true">
           Level 1: Main Floor Architectural Plan
         </button>
-        <button onclick="switchBlueprint('bp-upper', event)" class="blueprint-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-800 text-stone-300 hover:bg-stone-700 transition">
+        <button onclick="switchBlueprint('bp-upper', event)" class="blueprint-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-stone-800 text-stone-300 hover:bg-stone-700 transition active:scale-95 min-h-[44px]" role="tab" aria-selected="false">
           Level 2: Second Floor &amp; Lofts Plan
         </button>
-        <button onclick="switchBlueprint('bp-lower', event)" class="blueprint-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-stone-800 text-stone-300 hover:bg-stone-700 transition">
+        <button onclick="switchBlueprint('bp-lower', event)" class="blueprint-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-stone-800 text-stone-300 hover:bg-stone-700 transition active:scale-95 min-h-[44px]" role="tab" aria-selected="false">
           Lower Level: 2,000 Sq. Ft. Rec Lounge Plan
         </button>
       </div>
 
       <!-- Blueprint Displays -->
-      <div class="bg-stone-950/80 border border-stone-800 rounded-2xl p-4 sm:p-8 flex flex-col items-center justify-center">
+      <div class="bg-stone-950/90 border border-stone-800 rounded-3xl p-4 sm:p-8 flex flex-col items-center justify-center shadow-inner">
         <!-- Blueprint 1: Main Level -->
         <div id="bp-main" class="blueprint-panel w-full flex flex-col items-center">
           <div class="w-full flex items-center justify-between mb-4 text-xs text-stone-400">
-            <span class="font-bold text-amber-300"><i class="fa-solid fa-circle-info mr-1"></i> Main Level Floor Plan Blueprint (7,000 sq ft core)</span>
-            <span class="text-stone-500">Click schematic to zoom in lightbox</span>
+            <span class="font-bold text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-circle-info"></i> Level 1 Floor Plan Schematic (Main Living Core)</span>
+            <span class="text-stone-500 hidden sm:inline"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Tap schematic to zoom</span>
           </div>
-          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg', 'Main Level 2D Architectural Line Graphic Floor Plan')" class="w-full max-w-4xl p-4 bg-white/5 rounded-2xl border border-stone-800 cursor-pointer hover:border-amber-500/50 transition duration-300 flex justify-center">
-            <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg" alt="Main Level 2D Floor Plan Blueprint" class="max-h-[500px] w-auto object-contain">
+          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg', 'Main Level 2D Architectural Line Graphic Floor Plan')" class="w-full max-w-4xl p-6 bg-white/5 rounded-2xl border border-stone-800 cursor-pointer hover:border-amber-500/50 transition duration-300 flex justify-center group active:scale-[0.99]">
+            <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg" alt="Main Level 2D Floor Plan Blueprint" class="max-h-[500px] w-auto object-contain group-hover:scale-[1.02] transition duration-300">
           </div>
         </div>
 
         <!-- Blueprint 2: Upper Level -->
         <div id="bp-upper" class="blueprint-panel hidden w-full flex flex-col items-center">
           <div class="w-full flex items-center justify-between mb-4 text-xs text-stone-400">
-            <span class="font-bold text-amber-300"><i class="fa-solid fa-circle-info mr-1"></i> Second Floor &amp; 3rd Floor Lofts Blueprint</span>
-            <span class="text-stone-500">Click schematic to zoom in lightbox</span>
+            <span class="font-bold text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-circle-info"></i> Level 2 &amp; 3rd Floor Lofts Schematic</span>
+            <span class="text-stone-500 hidden sm:inline"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Tap schematic to zoom</span>
           </div>
-          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg', 'Second Floor &amp; Lofts 2D Architectural Line Graphic Floor Plan')" class="w-full max-w-4xl p-4 bg-white/5 rounded-2xl border border-stone-800 cursor-pointer hover:border-amber-500/50 transition duration-300 flex justify-center">
-            <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg" alt="Second Floor 2D Floor Plan Blueprint" class="max-h-[500px] w-auto object-contain">
+          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg', 'Second Floor &amp; Lofts 2D Architectural Line Graphic Floor Plan')" class="w-full max-w-4xl p-6 bg-white/5 rounded-2xl border border-stone-800 cursor-pointer hover:border-amber-500/50 transition duration-300 flex justify-center group active:scale-[0.99]">
+            <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg" alt="Second Floor 2D Floor Plan Blueprint" class="max-h-[500px] w-auto object-contain group-hover:scale-[1.02] transition duration-300">
           </div>
         </div>
 
         <!-- Blueprint 3: Lower Level -->
         <div id="bp-lower" class="blueprint-panel hidden w-full flex flex-col items-center">
           <div class="w-full flex items-center justify-between mb-4 text-xs text-stone-400">
-            <span class="font-bold text-amber-300"><i class="fa-solid fa-circle-info mr-1"></i> Lower Level Recreation Lounge Blueprint (2,000 sq ft)</span>
-            <span class="text-stone-500">Click schematic to zoom in lightbox</span>
+            <span class="font-bold text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-circle-info"></i> Lower Level 2,000 Sq. Ft. Recreation Lounge Schematic</span>
+            <span class="text-stone-500 hidden sm:inline"><i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Tap schematic to zoom</span>
           </div>
-          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg', 'Lower Level Recreation Lounge 2D Architectural Line Graphic Floor Plan')" class="w-full max-w-4xl p-4 bg-white/5 rounded-2xl border border-stone-800 cursor-pointer hover:border-amber-500/50 transition duration-300 flex justify-center">
-            <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg" alt="Lower Level 2D Floor Plan Blueprint" class="max-h-[500px] w-auto object-contain">
+          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg', 'Lower Level Recreation Lounge 2D Architectural Line Graphic Floor Plan')" class="w-full max-w-4xl p-6 bg-white/5 rounded-2xl border border-stone-800 cursor-pointer hover:border-amber-500/50 transition duration-300 flex justify-center group active:scale-[0.99]">
+            <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg" alt="Lower Level 2D Floor Plan Blueprint" class="max-h-[500px] w-auto object-contain group-hover:scale-[1.02] transition duration-300">
           </div>
         </div>
       </div>
@@ -312,13 +341,13 @@
     <section id="first-floor" class="level-section space-y-10 scroll-mt-36">
       
       <!-- Section Header -->
-      <div class="border-b-2 border-amber-600/30 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-2">
+      <div class="border-b-2 border-amber-600/30 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-3">
         <div>
           <span class="text-xs font-bold uppercase tracking-widest text-amber-700">Level One</span>
-          <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-900">First Floor &amp; Grand Living Areas</h2>
+          <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-900">Main Floor Living &amp; Guest Suites</h2>
         </div>
-        <p class="text-xs sm:text-sm text-stone-500 max-w-md">
-          Includes the Cathedral Great Room, Chef’s Kitchen, Formal Dining Room, Grand Master Suite, and 3 En-Suite Bedrooms with 2D line schematics.
+        <p class="text-xs sm:text-sm text-stone-600 max-w-md">
+          Includes the Cathedral Great Room, Gourmet Chef’s Kitchen, Formal Dining Hall, Grand Master Suite, and 3 En-Suite Bedrooms.
         </p>
       </div>
 
@@ -327,32 +356,32 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-stone-100 pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Main Level</span>
-              <span class="text-xs text-stone-500 font-medium"><i class="fa-solid fa-utensils text-amber-600 mr-1"></i> Seating for 10</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Main Level</span>
+              <span class="text-xs text-stone-600 font-semibold"><i class="fa-solid fa-utensils text-amber-600 mr-1.5"></i> Seating for 10</span>
             </div>
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">Gourmet Eat-In Kitchen</h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1.5">Gourmet Eat-In Kitchen</h3>
           </div>
-          <div class="flex flex-wrap gap-2 text-xs font-medium text-stone-600">
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-kitchen-set text-amber-600 mr-1"></i> Prep Island</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-mug-hot text-amber-600 mr-1"></i> Keurig &amp; Regular Coffee</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-door-open text-amber-600 mr-1"></i> Deck Access</span>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold text-stone-700">
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-kitchen-set text-amber-600 mr-1.5"></i> Prep Island</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-mug-hot text-amber-600 mr-1.5"></i> Keurig &amp; Regular Coffee</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-door-open text-amber-600 mr-1.5"></i> Direct Deck Walkout</span>
           </div>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start">
           <div class="lg:col-span-6 space-y-4 text-stone-600 text-sm leading-relaxed">
             <p class="text-base text-stone-800 font-medium">
-              Large, sun-drenched eat-in kitchen with custom seating for 10 at the substantial center prep island.
+              A light-filled, expansive culinary hub featuring custom island bar seating for 10 guests.
             </p>
             <p>
-              Handcrafted solid cherry cabinetry paired with polished granite countertops, stocked with comprehensive cookware and generous extra pantry storage. Equipped with a premium side-by-side refrigerator featuring an in-door filtered water dispenser and ice maker. Sliding glass patio doors open directly onto the expansive outdoor entertaining deck.
+              Handcrafted solid cherry cabinetry paired with polished granite countertops, generously stocked with chef-grade cookware, bakeware, and pantry storage. Equipped with a premium side-by-side refrigerator featuring filtered water and an automatic ice maker. Sliding glass patio doors open directly onto the large outdoor entertaining deck.
             </p>
 
             <div class="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-4 mt-4">
-              <h4 class="font-bold text-xs uppercase tracking-wider text-amber-900 mb-2.5 flex items-center gap-1.5">
+              <h4 class="font-bold text-xs uppercase tracking-wider text-amber-900 mb-2.5 flex items-center gap-2">
                 <i class="fa-solid fa-circle-check text-amber-700"></i> Stocked Kitchen Amenities &amp; Cookware:
               </h4>
-              <ul class="grid grid-cols-2 gap-y-1.5 gap-x-3 text-xs text-stone-700 font-medium">
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-4 text-xs text-stone-700 font-medium">
                 <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Side-by-side refrigerator</li>
                 <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Electric stove with oven</li>
                 <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Built-in microwave</li>
@@ -361,47 +390,62 @@
                 <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> High-speed blender</li>
                 <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Multi-slice toaster</li>
                 <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Electric griddle</li>
-                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Large crock pot / slow cooker</li>
-                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Full dishware &amp; silver service</li>
-                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Quality pots, pans &amp; skillets</li>
-                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Abundant bakeware &amp; utensils</li>
+                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Large slow cooker / crock pot</li>
+                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Full dinnerware &amp; silverware</li>
+                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Heavy-gauge pots &amp; pans</li>
+                <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Extensive baking essentials</li>
               </ul>
             </div>
           </div>
 
-          <!-- 2D Line Graphic & Photo Gallery for Kitchen -->
-          <div class="lg:col-span-6 space-y-4">
-            <!-- 2D Line Graphic Card -->
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/kitchen-floorplan.svg', 'Kitchen - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-              <div class="w-full flex items-center justify-between mb-2">
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                  <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-                </span>
-                <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                  ● Kitchen Highlighted
-                </span>
+          <!-- Progressive Disclosure: Segmented Control (Photos vs 2D Line Graphic) -->
+          <div class="lg:col-span-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('kitchen', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('kitchen', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
               </div>
-              <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/kitchen-floorplan.svg" alt="Kitchen 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-              </div>
-              <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-                <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-              </span>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
 
-            <!-- Photos Grid -->
-            <div class="grid grid-cols-4 gap-2">
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kit2.jpg', 'Gourmet Kitchen with Island')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+            <!-- Photos View -->
+            <div id="kitchen-view-photos" class="grid grid-cols-2 gap-3">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kit2.jpg', 'Gourmet Kitchen with Island')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Kit2.jpg" alt="Maple Manor Kitchen" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                <span class="absolute bottom-2.5 right-2.5 bg-stone-900/80 text-white text-xs px-2.5 py-1 rounded-full"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom</span>
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-min.jpg', 'Cherry Cabinets and Prep Island')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-min.jpg', 'Cherry Cabinets and Prep Island')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-min.jpg" alt="Kitchen Prep Island" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-3-min.jpg', 'Granite Countertops &amp; Appliances')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-3-min.jpg', 'Granite Countertops &amp; Appliances')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-3-min.jpg" alt="Kitchen Appliances" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-2-min.jpg', 'Kitchen Seating Area')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-2-min.jpg', 'Kitchen Seating Area')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Kitchen-2-min.jpg" alt="Kitchen Seating" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              </div>
+            </div>
+
+            <!-- 2D Line Graphic Blueprint View -->
+            <div id="kitchen-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/kitchen-floorplan.svg', 'Kitchen - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Kitchen Zone Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-72">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/kitchen-floorplan.svg" alt="Kitchen 2D Line Graphic Floor Plan" class="max-h-64 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
               </div>
             </div>
           </div>
@@ -413,60 +457,75 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-stone-100 pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Main Level</span>
-              <span class="text-xs text-stone-500 font-medium"><i class="fa-solid fa-users text-amber-600 mr-1"></i> Seating for 10 (20 Combined)</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Main Level</span>
+              <span class="text-xs text-stone-600 font-semibold"><i class="fa-solid fa-users text-amber-600 mr-1.5"></i> Seating for 10 (20 Combined)</span>
             </div>
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">Formal Dining Room &amp; Meeting Hall</h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1.5">Formal Dining Hall &amp; Gathering Suite</h3>
           </div>
-          <div class="flex flex-wrap gap-2 text-xs font-medium text-stone-600">
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-lightbulb text-amber-600 mr-1"></i> Chandelier &amp; Sconces</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-video text-amber-600 mr-1"></i> Projector Wall Ready</span>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold text-stone-700">
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-lightbulb text-amber-600 mr-1.5"></i> Chandelier &amp; Sconces</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-video text-amber-600 mr-1.5"></i> Presentation Wall Ready</span>
           </div>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start">
           <div class="lg:col-span-6 space-y-4 text-stone-600 text-sm leading-relaxed">
             <p class="text-base text-stone-800 font-medium">
-              Spacious and elegant formal dining hall designed to seat 10 comfortably around the central banquet table.
+              An elegant banquet hall designed for 10 seated guests, seamlessly expanding to 20 when paired with the adjacent kitchen island.
             </p>
             <p>
-              When combined with the adjacent 10-person kitchen island seating, Maple Manor effortlessly hosts <strong>up to 20 guests dining together</strong> in a single cohesive great hall atmosphere.
+              When hosting family reunions, weddings, or corporate retreats, the combined dining and kitchen space allows your entire party of 20 to dine together in an open, cohesive atmosphere.
             </p>
             <p>
-              The room is illuminated by warm wall sconces and a statement table chandelier. For corporate retreats and workshops, this room offers clean expansive wall space ideal for projector screens and presentation displays.
+              Illuminated by warm ambient wall sconces and a statement dining chandelier. For group presentations or off-site workshops, the room provides clear architectural wall space suited for projector screens.
             </p>
           </div>
 
-          <!-- 2D Line Graphic & Photos for Dining Room -->
-          <div class="lg:col-span-6 space-y-4">
-            <!-- 2D Line Graphic Card -->
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/dining-room-floorplan.svg', 'Dining Room - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-              <div class="w-full flex items-center justify-between mb-2">
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                  <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-                </span>
-                <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                  ● Dining Room Highlighted
-                </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="lg:col-span-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('dining', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (3)
+                </button>
+                <button onclick="toggleRoomView('dining', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
               </div>
-              <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/dining-room-floorplan.svg" alt="Dining Room 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-              </div>
-              <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-                <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-              </span>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
 
-            <!-- Photos -->
-            <div class="grid grid-cols-3 gap-2">
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-RM.jpg', 'Formal Dining Room with Seating for 10')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+            <!-- Photos View -->
+            <div id="dining-view-photos" class="grid grid-cols-3 gap-3">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-RM.jpg', 'Formal Dining Room with Seating for 10')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-RM.jpg" alt="Dining Room" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                <span class="absolute bottom-2.5 right-2.5 bg-stone-900/80 text-white text-xs px-2 py-0.5 rounded-full"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom</span>
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-Room-min.jpg', 'Dining Room Detail with Chandelier')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-Room-min.jpg', 'Dining Room Detail with Chandelier')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-Room-min.jpg" alt="Dining Table" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-Room-2-min.jpg', 'Dining View Towards Great Room')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-Room-2-min.jpg', 'Dining View Towards Great Room')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Dining-Room-2-min.jpg" alt="Dining Room Sconces" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              </div>
+            </div>
+
+            <!-- Blueprint View -->
+            <div id="dining-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/dining-room-floorplan.svg', 'Dining Room - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Dining Room Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-72">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/dining-room-floorplan.svg" alt="Dining Room 2D Line Graphic Floor Plan" class="max-h-64 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
               </div>
             </div>
           </div>
@@ -478,61 +537,76 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-stone-100 pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Main Level</span>
-              <span class="text-xs text-stone-500 font-medium"><i class="fa-solid fa-arrows-up-to-line text-amber-600 mr-1"></i> 25-Foot Ceilings</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Main Level</span>
+              <span class="text-xs text-stone-600 font-semibold"><i class="fa-solid fa-arrows-up-to-line text-amber-600 mr-1.5"></i> 25-Foot Ceilings</span>
             </div>
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">Cathedral Great Room</h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1.5">Cathedral Great Room Sanctuary</h3>
           </div>
-          <div class="flex flex-wrap gap-2 text-xs font-medium text-stone-600">
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-fire text-amber-600 mr-1"></i> Gas Fireplace</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-music text-amber-600 mr-1"></i> Acoustic Piano</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-tv text-amber-600 mr-1"></i> 75&quot; 4K Smart TV &amp; Surround</span>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold text-stone-700">
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-fire text-amber-600 mr-1.5"></i> Gas Fireplace</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-music text-amber-600 mr-1.5"></i> Acoustic Piano</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-tv text-amber-600 mr-1.5"></i> 75&quot; 4K Smart TV &amp; Surround</span>
           </div>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start">
           <div class="lg:col-span-6 space-y-4 text-stone-600 text-sm leading-relaxed">
             <p class="text-base text-stone-800 font-medium">
-              The awe-inspiring crown jewel of the home: a dramatic 25-foot cathedral ceiling adorned with architectural lighted timber beams and custom floor-to-ceiling bookcases.
+              A soaring architectural sanctuary defined by 25-foot cathedral timber ceilings, warm ambient beam lighting, and floor-to-ceiling built-in bookcases.
             </p>
             <p>
-              Features generous, plush leather seating, a cozy gas fireplace with stone surround, a tuned acoustic piano for musical evenings, and a 75&quot; 4K Smart TV with an immersive surround sound system. An extraordinary sanctuary for the whole group to gather, converse, or unwind.
+              Anchored by a grand gas fireplace with natural stone masonry, a finely tuned acoustic piano for fireside music, and an immersive 75&quot; 4K Smart TV with premium surround sound. An extraordinary gathering space allowing multi-generational groups to converse, relax, and celebrate together.
             </p>
           </div>
 
-          <!-- 2D Line Graphic & Photos for Great Room -->
-          <div class="lg:col-span-6 space-y-4">
-            <!-- 2D Line Graphic Card -->
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg', 'Great Room - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-              <div class="w-full flex items-center justify-between mb-2">
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                  <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-                </span>
-                <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                  ● Great Room Highlighted
-                </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="lg:col-span-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('great-room', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('great-room', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
               </div>
-              <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg" alt="Great Room 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-              </div>
-              <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-                <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-              </span>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
 
-            <!-- Photos -->
-            <div class="grid grid-cols-4 gap-2">
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-4.jpg', 'Great Room Cathedral Ceilings &amp; Beams')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+            <!-- Photos View -->
+            <div id="great-room-view-photos" class="grid grid-cols-2 gap-3">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-4.jpg', 'Great Room Cathedral Ceilings &amp; Beams')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-4.jpg" alt="Great Room Beams" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                <span class="absolute bottom-2.5 right-2.5 bg-stone-900/80 text-white text-xs px-2.5 py-1 rounded-full"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom</span>
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-3.jpg', 'Gas Fireplace &amp; Acoustic Piano')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-3.jpg', 'Gas Fireplace &amp; Acoustic Piano')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-3.jpg" alt="Great Room Piano" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room2.jpg', 'Great Room Seating &amp; 75-inch TV')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room2.jpg', 'Great Room Seating &amp; 75-inch TV')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room2.jpg" alt="Great Room TV" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-1.jpg', 'Great Room Panoramic View')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-1.jpg', 'Great Room Panoramic View')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/Great-Room-1.jpg" alt="Great Room Architecture" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              </div>
+            </div>
+
+            <!-- Blueprint View -->
+            <div id="great-room-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg', 'Great Room - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Great Room Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-72">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/great-room-floorplan.svg" alt="Great Room 2D Line Graphic Floor Plan" class="max-h-64 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
               </div>
             </div>
           </div>
@@ -544,65 +618,80 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-stone-100 pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Bedroom 1 • Main Floor</span>
-              <span class="text-xs text-stone-500 font-medium"><i class="fa-solid fa-bed text-amber-600 mr-1"></i> King Bed • Sleeps 2</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bedroom 1 • Main Floor</span>
+              <span class="text-xs text-stone-600 font-semibold"><i class="fa-solid fa-bed text-amber-600 mr-1.5"></i> King Bed • Sleeps 2</span>
             </div>
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">Grand Master Suite</h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1.5">Grand Master Suite</h3>
           </div>
-          <div class="flex flex-wrap gap-2 text-xs font-medium text-stone-600">
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-bath text-amber-600 mr-1"></i> Jacuzzi Ensuite &amp; Dual Vanity</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-fire text-amber-600 mr-1"></i> Gas Fireplace</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-door-open text-amber-600 mr-1"></i> Private Deck Walkout</span>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold text-stone-700">
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-bath text-amber-600 mr-1.5"></i> Jacuzzi Ensuite &amp; Dual Vanity</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-fire text-amber-600 mr-1.5"></i> Gas Fireplace</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-door-open text-amber-600 mr-1.5"></i> Private Deck Walkout</span>
           </div>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start">
           <div class="lg:col-span-6 space-y-4 text-stone-600 text-sm leading-relaxed">
             <p class="text-base text-stone-800 font-medium">
-              You will not be disappointed with the sheer scale and luxury appointments of this primary retreat.
+              An expansive primary retreat offering over 500 square feet of private sanctuary and serene woodland views.
             </p>
             <p>
-              Features a stately King bedroom suite with dual nightstands, full dresser with mirror, and expansive walk-in closet. The suite features its own romantic gas fireplace, sliding patio doors leading directly onto the private back deck, and an in-room hospitality station with mini-refrigerator, microwave, and coffee maker, plus a 50&quot; Smart TV.
+              Features a stately King bed suite, dual bedside tables, an executive dresser with mirror, and a walk-in wardrobe. Includes a romantic corner gas fireplace, private sliding glass doors opening onto the deck, an in-room hospitality wet bar with mini-refrigerator, microwave, and coffee station, plus a 50&quot; Smart TV.
             </p>
             <div class="bg-stone-50 border border-stone-200 rounded-2xl p-4 text-xs space-y-1.5">
-              <div class="font-bold text-stone-900 flex items-center gap-1.5"><i class="fa-solid fa-hot-tub-person text-amber-700"></i> En-Suite Luxury Bath:</div>
-              <p class="text-stone-600">Includes a deep Jacuzzi soaking tub, double vanity sinks with private mirrors, and a separate enclosed room for the toilet and walk-in shower.</p>
+              <div class="font-bold text-stone-900 flex items-center gap-1.5 text-sm"><i class="fa-solid fa-hot-tub-person text-amber-700"></i> En-Suite Luxury Bath:</div>
+              <p class="text-stone-600 leading-relaxed">Includes a deep Jacuzzi hydrotherapy soaking tub, dual private vanity sinks, and a separate enclosed room for the toilet and walk-in shower.</p>
             </div>
           </div>
 
-          <!-- 2D Line Graphic & Photos for Master Suite -->
-          <div class="lg:col-span-6 space-y-4">
-            <!-- 2D Line Graphic Card -->
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/master-bedroom-floorplan.svg', 'Master Bedroom Suite - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-              <div class="w-full flex items-center justify-between mb-2">
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                  <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-                </span>
-                <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                  ● Master Suite Highlighted
-                </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="lg:col-span-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('master', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('master', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
               </div>
-              <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/master-bedroom-floorplan.svg" alt="Master Bedroom 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-              </div>
-              <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-                <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-              </span>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
 
-            <!-- Photos -->
-            <div class="grid grid-cols-4 gap-2">
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB4.jpg', 'Master Bedroom King Bed Suite')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+            <!-- Photos View -->
+            <div id="master-view-photos" class="grid grid-cols-2 gap-3">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB4.jpg', 'Master Bedroom King Bed Suite')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/MB4.jpg" alt="Master Bedroom" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                <span class="absolute bottom-2.5 right-2.5 bg-stone-900/80 text-white text-xs px-2.5 py-1 rounded-full"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom</span>
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB2.jpg', 'Master Gas Fireplace &amp; Deck Walkout')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB2.jpg', 'Master Gas Fireplace &amp; Deck Walkout')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/MB2.jpg" alt="Master Fireplace" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB1.jpg', 'Master Bedroom Hospitality Nook')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB1.jpg', 'Master Bedroom Hospitality Nook')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/MB1.jpg" alt="Master Suite View" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB-Bath.jpg', 'Master En-Suite Jacuzzi Bath')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/MB-Bath.jpg', 'Master En-Suite Jacuzzi Bath')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/MB-Bath.jpg" alt="Master Jacuzzi Tub" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              </div>
+            </div>
+
+            <!-- Blueprint View -->
+            <div id="master-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/master-bedroom-floorplan.svg', 'Master Bedroom Suite - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Master Suite Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-72">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/master-bedroom-floorplan.svg" alt="Master Bedroom 2D Line Graphic Floor Plan" class="max-h-64 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
               </div>
             </div>
           </div>
@@ -613,100 +702,139 @@
       <div class="grid md:grid-cols-3 gap-6">
         
         <!-- BEDROOM 2 -->
-        <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm p-5 space-y-4 flex flex-col justify-between">
+        <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm p-6 space-y-4 flex flex-col justify-between">
           <div class="space-y-3">
             <div class="flex justify-between items-start">
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Bed 2 • West Wing</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full uppercase">Bed 2 • West Wing</span>
               <span class="text-xs font-bold text-stone-700">King Bed (Sleeps 2)</span>
             </div>
             <h4 class="font-serif text-xl font-bold text-stone-900">King En-Suite (Bedroom 2)</h4>
             <p class="text-xs text-stone-600 leading-relaxed">
-              Located off the west side of the Great Room. King bed, TV, DVD, desk, electric fireplace, armchair, closet, and private Jacuzzi bath.
+              Quietly situated off the west wing of the Great Room. King bed, Smart TV, writing desk, electric fireplace, reading armchair, closet, and private Jacuzzi bathroom.
             </p>
-            <div class="flex flex-wrap gap-1 text-[11px] text-stone-500 font-medium">
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Ensuite Jacuzzi</span>
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Fireplace</span>
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Desk</span>
+            <div class="flex flex-wrap gap-1.5 text-xs text-stone-600 font-medium">
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Ensuite Jacuzzi</span>
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Fireplace</span>
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Desk</span>
             </div>
           </div>
 
-          <!-- 2D Line Graphic & Photos -->
           <div class="space-y-3 pt-2">
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-two-floorplan.svg', 'Bedroom 2 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="bg-stone-50 border border-amber-600/30 rounded-xl p-2.5 flex flex-col items-center cursor-pointer hover:border-amber-600 transition">
-              <span class="text-[10px] font-bold text-stone-700 mb-1 flex items-center gap-1"><i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan (Bed 2 Highlighted)</span>
-              <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-two-floorplan.svg" alt="Bedroom 2 2D Floor Plan" class="max-h-28 w-auto object-contain">
+            <div class="segmented-control inline-flex w-full justify-center">
+              <button onclick="toggleRoomView('bed2', 'photos', event)" class="segment-btn active flex-1 py-1.5 text-xs font-bold flex items-center justify-center gap-1 min-h-[38px]">
+                <i class="fa-solid fa-camera text-amber-600"></i> Photos (4)
+              </button>
+              <button onclick="toggleRoomView('bed2', 'blueprint', event)" class="segment-btn flex-1 py-1.5 text-xs font-semibold flex items-center justify-center gap-1 min-h-[38px]">
+                <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Plan
+              </button>
             </div>
-            <div class="grid grid-cols-4 gap-1.5">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm2.jpg', 'Bedroom 2 King Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm2.jpg" alt="Bedroom 2" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed-rm2.jpg', 'Bedroom 2 Desk and Fireplace')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed-rm2.jpg" alt="Bedroom 2 Fireplace" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed2.jpg', 'Bedroom 2 Angle')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed2.jpg" alt="Bedroom 2 Suite" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-2.jpg', 'Bedroom 2 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-2.jpg" alt="Bedroom 2 Bath" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
+
+            <!-- Photos -->
+            <div id="bed2-view-photos" class="grid grid-cols-4 gap-1.5">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm2.jpg', 'Bedroom 2 King Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm2.jpg" alt="Bedroom 2" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed-rm2.jpg', 'Bedroom 2 Desk and Fireplace')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed-rm2.jpg" alt="Bedroom 2 Fireplace" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed2.jpg', 'Bedroom 2 Angle')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed2.jpg" alt="Bedroom 2 Suite" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-2.jpg', 'Bedroom 2 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-2.jpg" alt="Bedroom 2 Bath" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+            </div>
+
+            <!-- Blueprint -->
+            <div id="bed2-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-two-floorplan.svg', 'Bedroom 2 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="bg-stone-50 border border-amber-600/30 rounded-2xl p-3 flex flex-col items-center cursor-pointer hover:border-amber-600 transition active:scale-95">
+                <span class="text-xs font-bold text-stone-700 mb-1.5 flex items-center gap-1"><i class="fa-solid fa-compass-drafting text-amber-600"></i> Bed 2 Highlighted</span>
+                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-two-floorplan.svg" alt="Bedroom 2 2D Floor Plan" class="max-h-32 w-auto object-contain">
+              </div>
             </div>
           </div>
         </div>
 
         <!-- BEDROOM 3 -->
-        <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm p-5 space-y-4 flex flex-col justify-between">
+        <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm p-6 space-y-4 flex flex-col justify-between">
           <div class="space-y-3">
             <div class="flex justify-between items-start">
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Bed 3 • West Wing</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full uppercase">Bed 3 • West Wing</span>
               <span class="text-xs font-bold text-stone-700">Queen Bed (Sleeps 2)</span>
             </div>
             <h4 class="font-serif text-xl font-bold text-stone-900">Queen En-Suite (Bedroom 3)</h4>
             <p class="text-xs text-stone-600 leading-relaxed">
-              Also situated off the west side of the Great Room. Queen bed, TV, DVD, desk, electric fireplace, chair, closet, and private Jacuzzi bath.
+              Also situated off the west wing of the Great Room. Queen bed, Smart TV, writing desk, electric fireplace, reading armchair, closet, and private Jacuzzi bathroom.
             </p>
-            <div class="flex flex-wrap gap-1 text-[11px] text-stone-500 font-medium">
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Ensuite Jacuzzi</span>
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Fireplace</span>
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Desk</span>
+            <div class="flex flex-wrap gap-1.5 text-xs text-stone-600 font-medium">
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Ensuite Jacuzzi</span>
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Fireplace</span>
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Desk</span>
             </div>
           </div>
 
-          <!-- 2D Line Graphic & Photos -->
           <div class="space-y-3 pt-2">
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-three-floorplan.svg', 'Bedroom 3 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="bg-stone-50 border border-amber-600/30 rounded-xl p-2.5 flex flex-col items-center cursor-pointer hover:border-amber-600 transition">
-              <span class="text-[10px] font-bold text-stone-700 mb-1 flex items-center gap-1"><i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan (Bed 3 Highlighted)</span>
-              <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-three-floorplan.svg" alt="Bedroom 3 2D Floor Plan" class="max-h-28 w-auto object-contain">
+            <div class="segmented-control inline-flex w-full justify-center">
+              <button onclick="toggleRoomView('bed3', 'photos', event)" class="segment-btn active flex-1 py-1.5 text-xs font-bold flex items-center justify-center gap-1 min-h-[38px]">
+                <i class="fa-solid fa-camera text-amber-600"></i> Photos (4)
+              </button>
+              <button onclick="toggleRoomView('bed3', 'blueprint', event)" class="segment-btn flex-1 py-1.5 text-xs font-semibold flex items-center justify-center gap-1 min-h-[38px]">
+                <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Plan
+              </button>
             </div>
-            <div class="grid grid-cols-4 gap-1.5">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-e1551210334376.jpg', 'Bedroom 3 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-e1551210334376.jpg" alt="Bedroom 3" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-1.jpg', 'Bedroom 3 Fireplace')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-1.jpg" alt="Bedroom 3 Desk" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-3.jpg', 'Bedroom 3 Ensuite Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-3.jpg" alt="Bedroom 3 Bath" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-3-min.jpg', 'Bedroom 3 Overview')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-3-min.jpg" alt="Bedroom 3 Suite" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
+
+            <!-- Photos -->
+            <div id="bed3-view-photos" class="grid grid-cols-4 gap-1.5">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-e1551210334376.jpg', 'Bedroom 3 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-e1551210334376.jpg" alt="Bedroom 3" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-1.jpg', 'Bedroom 3 Fireplace')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed3-1.jpg" alt="Bedroom 3 Desk" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-3.jpg', 'Bedroom 3 Ensuite Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm-3.jpg" alt="Bedroom 3 Bath" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-3-min.jpg', 'Bedroom 3 Overview')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-3-min.jpg" alt="Bedroom 3 Suite" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+            </div>
+
+            <!-- Blueprint -->
+            <div id="bed3-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-three-floorplan.svg', 'Bedroom 3 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="bg-stone-50 border border-amber-600/30 rounded-2xl p-3 flex flex-col items-center cursor-pointer hover:border-amber-600 transition active:scale-95">
+                <span class="text-xs font-bold text-stone-700 mb-1.5 flex items-center gap-1"><i class="fa-solid fa-compass-drafting text-amber-600"></i> Bed 3 Highlighted</span>
+                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-three-floorplan.svg" alt="Bedroom 3 2D Floor Plan" class="max-h-32 w-auto object-contain">
+              </div>
             </div>
           </div>
         </div>
 
         <!-- BEDROOM 4 -->
-        <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm p-5 space-y-4 flex flex-col justify-between">
+        <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm p-6 space-y-4 flex flex-col justify-between">
           <div class="space-y-3">
             <div class="flex justify-between items-start">
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Bed 4 • East Wing</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full uppercase">Bed 4 • East Wing</span>
               <span class="text-xs font-bold text-stone-700">King Bed (Sleeps 2)</span>
             </div>
             <h4 class="font-serif text-xl font-bold text-stone-900">King En-Suite (Bedroom 4)</h4>
             <p class="text-xs text-stone-600 leading-relaxed">
-              Situated on the east side of the Great Room. Slightly larger than #2 &amp; #3 with custom bookcases, walk-in closet, King bed, TV, DVD, desk, fireplace, and private Jacuzzi bath.
+              Situated on the east wing of the Great Room. Slightly larger than #2 &amp; #3 with custom bookcases, walk-in wardrobe, King bed, Smart TV, desk, fireplace, and private Jacuzzi bath.
             </p>
-            <div class="flex flex-wrap gap-1 text-[11px] text-stone-500 font-medium">
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Ensuite Jacuzzi</span>
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Walk-in Closet</span>
-              <span class="bg-stone-50 border border-stone-200 px-2 py-0.5 rounded">Bookcases</span>
+            <div class="flex flex-wrap gap-1.5 text-xs text-stone-600 font-medium">
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Ensuite Jacuzzi</span>
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Walk-in Closet</span>
+              <span class="bg-stone-50 border border-stone-200 px-2.5 py-1 rounded-lg">Bookcases</span>
             </div>
           </div>
 
-          <!-- 2D Line Graphic & Photos -->
           <div class="space-y-3 pt-2">
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-floorplan.svg', 'Bedroom 4 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="bg-stone-50 border border-amber-600/30 rounded-xl p-2.5 flex flex-col items-center cursor-pointer hover:border-amber-600 transition">
-              <span class="text-[10px] font-bold text-stone-700 mb-1 flex items-center gap-1"><i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan (Bed 4 Highlighted)</span>
-              <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-floorplan.svg" alt="Bedroom 4 2D Floor Plan" class="max-h-28 w-auto object-contain">
+            <div class="segmented-control inline-flex w-full justify-center">
+              <button onclick="toggleRoomView('bed4', 'photos', event)" class="segment-btn active flex-1 py-1.5 text-xs font-bold flex items-center justify-center gap-1 min-h-[38px]">
+                <i class="fa-solid fa-camera text-amber-600"></i> Photos (4)
+              </button>
+              <button onclick="toggleRoomView('bed4', 'blueprint', event)" class="segment-btn flex-1 py-1.5 text-xs font-semibold flex items-center justify-center gap-1 min-h-[38px]">
+                <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Plan
+              </button>
             </div>
-            <div class="grid grid-cols-4 gap-1.5">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm4.jpg', 'Bedroom 4 King Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm4.jpg" alt="Bedroom 4" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-min.jpg', 'Bedroom 4 Built-ins')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-min.jpg" alt="Bedroom 4 Bookshelf" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed4.jpg', 'Bedroom 4 Fireplace &amp; Desk')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed4.jpg" alt="Bedroom 4 Desk" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedroom-Four-two-min.jpg', 'Bedroom 4 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedroom-Four-two-min.jpg" alt="Bedroom 4 Bath" class="rounded-lg aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
+
+            <!-- Photos -->
+            <div id="bed4-view-photos" class="grid grid-cols-4 gap-1.5">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm4.jpg', 'Bedroom 4 King Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedrm4.jpg" alt="Bedroom 4" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-min.jpg', 'Bedroom 4 Built-ins')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-min.jpg" alt="Bedroom 4 Bookshelf" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed4.jpg', 'Bedroom 4 Fireplace &amp; Desk')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed4.jpg" alt="Bedroom 4 Desk" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bedroom-Four-two-min.jpg', 'Bedroom 4 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bedroom-Four-two-min.jpg" alt="Bedroom 4 Bath" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+            </div>
+
+            <!-- Blueprint -->
+            <div id="bed4-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-floorplan.svg', 'Bedroom 4 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="bg-stone-50 border border-amber-600/30 rounded-2xl p-3 flex flex-col items-center cursor-pointer hover:border-amber-600 transition active:scale-95">
+                <span class="text-xs font-bold text-stone-700 mb-1.5 flex items-center gap-1"><i class="fa-solid fa-compass-drafting text-amber-600"></i> Bed 4 Highlighted</span>
+                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-four-floorplan.svg" alt="Bedroom 4 2D Floor Plan" class="max-h-32 w-auto object-contain">
+              </div>
             </div>
           </div>
         </div>
@@ -720,13 +848,13 @@
     <section id="second-floor" class="level-section space-y-10 scroll-mt-36">
       
       <!-- Section Header -->
-      <div class="border-b-2 border-amber-600/30 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-2">
+      <div class="border-b-2 border-amber-600/30 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-3">
         <div>
           <span class="text-xs font-bold uppercase tracking-widest text-amber-700">Level Two &amp; Three</span>
           <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-900">Second Floor Suites &amp; 3rd Floor Lofts</h2>
         </div>
-        <p class="text-xs sm:text-sm text-stone-500 max-w-md">
-          Two multi-story bedroom suites, each featuring their own private staircases, 3rd floor loft beds, private Jacuzzi baths, 2D line schematics, and a lockable connecting door.
+        <p class="text-xs sm:text-sm text-stone-600 max-w-md">
+          Two multi-story bedroom suites, each featuring their own private staircases, 3rd floor loft beds, private Jacuzzi baths, and lockable connecting doors.
         </p>
       </div>
 
@@ -736,50 +864,67 @@
         <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm overflow-hidden p-6 sm:p-8 space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-100 pb-4">
             <div>
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Bed 5 • 2nd Floor &amp; Loft</span>
-              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Bedroom 5 + 3rd Floor Loft</h3>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bed 5 • 2nd Floor &amp; Loft</span>
+              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1.5">Bedroom 5 + 3rd Floor Loft</h3>
             </div>
-            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-xl shrink-0">Sleeps 4 (Queen + Full Loft)</span>
+            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3.5 py-2 rounded-xl shrink-0">Sleeps 4 (Queen + Full Loft)</span>
           </div>
 
           <p class="text-sm text-stone-600 leading-relaxed">
-            Accessed via its own dedicated stairway. Features a Queen bed on the second level, TV, DVD player, electric fireplace, writing desk, cozy sofa/couch, and private ensuite bathroom with a Jacuzzi Tub/Shower.
+            Accessed via its own dedicated private staircase. Features a Queen bed on the second level, Smart TV, electric fireplace, writing desk, sofa lounge, and private ensuite bathroom with a Jacuzzi Tub/Shower.
           </p>
 
           <div class="bg-stone-50 border border-stone-200 rounded-2xl p-4 text-xs space-y-2">
-            <div class="font-bold text-stone-900 flex items-center gap-1.5 text-amber-800">
+            <div class="font-bold text-stone-900 flex items-center gap-1.5 text-sm text-amber-800">
               <i class="fa-solid fa-stairs"></i> 3rd Floor Loft &amp; Suite Features:
             </div>
-            <ul class="space-y-1 text-stone-600">
-              <li>&bull; <strong>3rd Floor Loft:</strong> An additional full-size double bed located on the private loft level above.</li>
-              <li>&bull; <strong>Connecting Privacy Door:</strong> Shares a secure interior door with Bedroom 6 that can be unlocked for extended families or deadbolted for complete privacy.</li>
+            <ul class="space-y-1.5 text-stone-600 leading-relaxed text-xs">
+              <li>&bull; <strong>3rd Floor Loft:</strong> An additional full-size double bed located on the private loft level directly above.</li>
+              <li>&bull; <strong>Interconnecting Privacy Door:</strong> Shares a secure interior door with Bedroom 6 that can be opened for family gatherings or deadbolted for complete privacy.</li>
             </ul>
           </div>
 
-          <!-- 2D Line Graphic Card -->
-          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg', 'Bedroom 5 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-            <div class="w-full flex items-center justify-between mb-2">
-              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-              </span>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                ● Bedroom 5 Highlighted
-              </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('bed5', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('bed5', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
+              </div>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
-            <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-              <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg" alt="Bedroom 5 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-            </div>
-            <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-              <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-            </span>
-          </div>
 
-          <!-- Photos -->
-          <div class="grid grid-cols-4 gap-2 pt-2">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-two-min.jpg', 'Bedroom 5 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-two-min.jpg" alt="Bedroom 5" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-three-min.jpg', 'Bedroom 5 Seating &amp; Desk')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-three-min.jpg" alt="Bedroom 5 Seating" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-min.jpg', 'Bedroom 5 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-min.jpg" alt="Bedroom 5 Bath" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg', '3rd Floor Loft Double Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg" alt="Bedroom 5 Loft" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
+            <!-- Photos -->
+            <div id="bed5-view-photos" class="grid grid-cols-4 gap-2 pt-1">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-two-min.jpg', 'Bedroom 5 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-two-min.jpg" alt="Bedroom 5" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-three-min.jpg', 'Bedroom 5 Seating &amp; Desk')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-5-three-min.jpg" alt="Bedroom 5 Seating" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-min.jpg', 'Bedroom 5 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-min.jpg" alt="Bedroom 5 Bath" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg', '3rd Floor Loft Double Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg" alt="Bedroom 5 Loft" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+            </div>
+
+            <!-- Blueprint -->
+            <div id="bed5-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg', 'Bedroom 5 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Bedroom 5 Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-64">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-five-floorplan.svg" alt="Bedroom 5 2D Line Graphic Floor Plan" class="max-h-56 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -787,50 +932,67 @@
         <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm overflow-hidden p-6 sm:p-8 space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-100 pb-4">
             <div>
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Bed 6 • 2nd Floor &amp; Loft</span>
-              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Bedroom 6 + 3rd Floor Loft</h3>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bed 6 • 2nd Floor &amp; Loft</span>
+              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1.5">Bedroom 6 + 3rd Floor Loft</h3>
             </div>
-            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-xl shrink-0">Sleeps 4 (Queen + Full Loft)</span>
+            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3.5 py-2 rounded-xl shrink-0">Sleeps 4 (Queen + Full Loft)</span>
           </div>
 
           <p class="text-sm text-stone-600 leading-relaxed">
-            Accessed via its own separate dedicated staircase. Features a Queen bed on the second level, TV, DVD player, electric fireplace, writing desk, sofa sitting area, and private ensuite bathroom with a Jacuzzi Tub/Shower.
+            Accessed via its own separate dedicated staircase. Features a Queen bed on the second level, Smart TV, electric fireplace, writing desk, sofa seating area, and private ensuite bathroom with a Jacuzzi Tub/Shower.
           </p>
 
           <div class="bg-stone-50 border border-stone-200 rounded-2xl p-4 text-xs space-y-2">
-            <div class="font-bold text-stone-900 flex items-center gap-1.5 text-amber-800">
+            <div class="font-bold text-stone-900 flex items-center gap-1.5 text-sm text-amber-800">
               <i class="fa-solid fa-stairs"></i> 3rd Floor Loft &amp; Suite Features:
             </div>
-            <ul class="space-y-1 text-stone-600">
+            <ul class="space-y-1.5 text-stone-600 leading-relaxed text-xs">
               <li>&bull; <strong>3rd Floor Loft:</strong> Features an additional full-size double bed situated on the loft directly above.</li>
-              <li>&bull; <strong>Connecting Privacy Door:</strong> Can interconnect with Bedroom 5 via double-locking privacy doors for family convenience.</li>
+              <li>&bull; <strong>Interconnecting Privacy Door:</strong> Can interconnect with Bedroom 5 via double-locking privacy doors for family convenience.</li>
             </ul>
           </div>
 
-          <!-- 2D Line Graphic Card -->
-          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-floorplan.svg', 'Bedroom 6 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-            <div class="w-full flex items-center justify-between mb-2">
-              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-              </span>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                ● Bedroom 6 Highlighted
-              </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('bed6', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('bed6', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
+              </div>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
-            <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-              <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-floorplan.svg" alt="Bedroom 6 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-            </div>
-            <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-              <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-            </span>
-          </div>
 
-          <!-- Photos -->
-          <div class="grid grid-cols-4 gap-2 pt-2">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-3-min.jpg', 'Bedroom 6 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-3-min.jpg" alt="Bedroom 6" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-2-min.jpg', 'Bedroom 6 Couch &amp; Desk')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-2-min.jpg" alt="Bedroom 6 Couch" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-min.jpg', 'Bedroom 6 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-min.jpg" alt="Bedroom 6 Bath" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg', '3rd Floor Loft Double Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg" alt="Bedroom 6 Loft" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
+            <!-- Photos -->
+            <div id="bed6-view-photos" class="grid grid-cols-4 gap-2 pt-1">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-3-min.jpg', 'Bedroom 6 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-3-min.jpg" alt="Bedroom 6" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-2-min.jpg', 'Bedroom 6 Couch &amp; Desk')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-2-min.jpg" alt="Bedroom 6 Couch" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-min.jpg', 'Bedroom 6 Jacuzzi Bath')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-min.jpg" alt="Bedroom 6 Bath" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg', '3rd Floor Loft Double Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/Bed7-Loft.jpg" alt="Bedroom 6 Loft" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+            </div>
+
+            <!-- Blueprint -->
+            <div id="bed6-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-floorplan.svg', 'Bedroom 6 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Bedroom 6 Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-64">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-six-floorplan.svg" alt="Bedroom 6 2D Line Graphic Floor Plan" class="max-h-56 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -843,13 +1005,13 @@
     <section id="lower-level" class="level-section space-y-10 scroll-mt-36">
       
       <!-- Section Header -->
-      <div class="border-b-2 border-amber-600/30 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-2">
+      <div class="border-b-2 border-amber-600/30 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-3">
         <div>
           <span class="text-xs font-bold uppercase tracking-widest text-amber-700">Lower Level</span>
           <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-900">2,000 Sq. Ft. Recreation Lounge &amp; Family Suites</h2>
         </div>
-        <p class="text-xs sm:text-sm text-stone-500 max-w-md">
-          High 9-foot ceilings, full daylight windows, professional gaming tables, 75&quot; entertainment theater, full bath, and two 4-person guest bedrooms with 2D line schematics.
+        <p class="text-xs sm:text-sm text-stone-600 max-w-md">
+          High 9-foot ceilings, full above-grade daylight windows, professional gaming tables, 75&quot; entertainment theater, full bath, and two 4-person guest bedrooms.
         </p>
       </div>
 
@@ -858,65 +1020,80 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-stone-100 pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Lower Level</span>
-              <span class="text-xs text-stone-500 font-medium"><i class="fa-solid fa-expand text-amber-600 mr-1"></i> 2,000 Sq. Ft. • 9-Ft Ceilings</span>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Lower Level</span>
+              <span class="text-xs text-stone-600 font-semibold"><i class="fa-solid fa-expand text-amber-600 mr-1.5"></i> 2,000 Sq. Ft. • 9-Ft Ceilings</span>
             </div>
-            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1">Entertainment &amp; Game Lounge</h3>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-1.5">Entertainment &amp; Game Lounge</h3>
           </div>
-          <div class="flex flex-wrap gap-2 text-xs font-medium text-stone-600">
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-bowling-ball text-amber-600 mr-1"></i> Regulation Pool Table</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-gamepad text-amber-600 mr-1"></i> 12-Ft Custom Shuffleboard</span>
-            <span class="bg-stone-50 border border-stone-200 px-3 py-1 rounded-lg"><i class="fa-solid fa-tv text-amber-600 mr-1"></i> 75&quot; 4K Smart TV</span>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold text-stone-700">
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-bowling-ball text-amber-600 mr-1.5"></i> Regulation Pool Table</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-gamepad text-amber-600 mr-1.5"></i> 12-Ft Custom Shuffleboard</span>
+            <span class="bg-stone-50 border border-stone-200 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-tv text-amber-600 mr-1.5"></i> 75&quot; 4K Smart TV</span>
           </div>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start">
           <div class="lg:col-span-6 space-y-4 text-stone-600 text-sm leading-relaxed">
             <p class="text-base text-stone-800 font-medium">
-              An exposed lower-level recreation paradise featuring soaring 9-foot ceilings and above-grade daylight windows that add over 2,000 square feet of finished living space.
+              An expansive 2,000 sq. ft. garden-level recreation lounge featuring soaring 9-foot ceilings and above-grade daylight windows with natural sunlight.
             </p>
             <p>
-              Includes a regulation slate pool table, a handcrafted 12-foot wooden shuffleboard table, a massive plush sectional sofa framing a 75&quot; 4K Smart TV, and dedicated gaming and dining tables.
+              Includes a regulation slate billiards table, a handcrafted 12-foot wooden shuffleboard table, a massive plush sectional sofa framing a 75&quot; 4K Smart TV, and dedicated gaming and dining tables.
             </p>
             <div class="bg-stone-50 border border-stone-200 rounded-2xl p-4 text-xs space-y-1.5">
-              <div class="font-bold text-stone-900 flex items-center gap-1.5"><i class="fa-solid fa-shower text-amber-700"></i> Full Bath &amp; Laundry Suite #2:</div>
-              <p class="text-stone-600">Features a dedicated full bathroom with a walk-in shower plus a second full-size washer and dryer set for seamless group laundry.</p>
+              <div class="font-bold text-stone-900 flex items-center gap-1.5 text-sm"><i class="fa-solid fa-shower text-amber-700"></i> Full Bath &amp; Laundry Suite #2:</div>
+              <p class="text-stone-600 leading-relaxed">Features a dedicated full bathroom with a walk-in shower plus a second full-size washer and dryer set for seamless group laundry.</p>
             </div>
           </div>
 
-          <!-- 2D Line Graphic & Photos for Rec Room -->
-          <div class="lg:col-span-6 space-y-4">
-            <!-- 2D Line Graphic Card -->
-            <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg', 'Rec Room Lounge - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-              <div class="w-full flex items-center justify-between mb-2">
-                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                  <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-                </span>
-                <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                  ● Rec Room Highlighted
-                </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="lg:col-span-6 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('rec-room', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('rec-room', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
               </div>
-              <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-                <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg" alt="Rec Room 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-              </div>
-              <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-                <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-              </span>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
 
             <!-- Photos -->
-            <div class="grid grid-cols-4 gap-2">
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4339.jpg', 'Recreation Room Overview &amp; Sectional')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+            <div id="rec-room-view-photos" class="grid grid-cols-2 gap-3">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4339.jpg', 'Recreation Room Overview &amp; Sectional')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4339.jpg" alt="Rec Room Lounge" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                <span class="absolute bottom-2.5 right-2.5 bg-stone-900/80 text-white text-xs px-2.5 py-1 rounded-full"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom</span>
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4336.jpg', 'Regulation Billiards Pool Table')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4336.jpg', 'Regulation Billiards Pool Table')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4336.jpg" alt="Billiards Pool Table" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4337.jpg', '12-Foot Custom Shuffleboard Table')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4337.jpg', '12-Foot Custom Shuffleboard Table')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4337.jpg" alt="Shuffleboard Table" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
               </div>
-              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4338.jpg', '75-inch TV Theater &amp; Board Games')" class="group relative rounded-xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4338.jpg', '75-inch TV Theater &amp; Board Games')" class="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3] bg-stone-100 shadow-sm active:scale-95 transition">
                 <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/IMG_4338.jpg" alt="Rec Room Sectional" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              </div>
+            </div>
+
+            <!-- Blueprint -->
+            <div id="rec-room-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg', 'Rec Room Lounge - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Rec Room Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-72">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/rec-room-floorplan.svg" alt="Rec Room 2D Line Graphic Floor Plan" class="max-h-64 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
               </div>
             </div>
           </div>
@@ -930,40 +1107,57 @@
         <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm overflow-hidden p-6 sm:p-8 space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-100 pb-4">
             <div>
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Bed 7 • Lower Level</span>
-              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Family Suite (Bedroom 7)</h3>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bed 7 • Lower Level</span>
+              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1.5">Family Suite (Bedroom 7)</h3>
             </div>
-            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-xl shrink-0">Sleeps 4 (Queen + 2 Twins)</span>
+            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3.5 py-2 rounded-xl shrink-0">Sleeps 4 (Queen + 2 Twins)</span>
           </div>
 
           <p class="text-sm text-stone-600 leading-relaxed">
-            Spacious exposed daylight bedroom with 9-foot ceilings. Configured with 1 Queen bed plus 2 Twin beds, Smart TV, substantial wardrobe closet, and immediate access to the lower-level full bath.
+            Spacious garden-level family suite with 9-foot ceilings and above-grade daylight windows. Configured with 1 Queen bed plus 2 Twin beds, Smart TV, generous closet, and immediate access to the lower-level walk-in shower bathroom.
           </p>
 
-          <!-- 2D Line Graphic Card -->
-          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-seven-floorplan.svg', 'Bedroom 7 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-            <div class="w-full flex items-center justify-between mb-2">
-              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-              </span>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                ● Bedroom 7 Highlighted
-              </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('bed7', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('bed7', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
+              </div>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
-            <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-              <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-seven-floorplan.svg" alt="Bedroom 7 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-            </div>
-            <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-              <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-            </span>
-          </div>
 
-          <!-- Photos -->
-          <div class="grid grid-cols-4 gap-2 pt-2">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0417.jpg', 'Bedroom 7 Queen &amp; Twin Beds')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0417.jpg" alt="Bedroom 7" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0421.jpg', 'Bedroom 7 Twin Beds Detail')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0421.jpg" alt="Bedroom 7 Twins" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0420.jpg', 'Bedroom 7 Windows &amp; 9ft Ceilings')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0420.jpg" alt="Bedroom 7 Space" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0422.jpg', 'Bedroom 7 Smart TV')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0422.jpg" alt="Bedroom 7 TV" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
+            <!-- Photos -->
+            <div id="bed7-view-photos" class="grid grid-cols-4 gap-2 pt-1">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0417.jpg', 'Bedroom 7 Queen &amp; Twin Beds')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0417.jpg" alt="Bedroom 7" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0421.jpg', 'Bedroom 7 Twin Beds Detail')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0421.jpg" alt="Bedroom 7 Twins" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0420.jpg', 'Bedroom 7 Windows &amp; 9ft Ceilings')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0420.jpg" alt="Bedroom 7 Space" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0422.jpg', 'Bedroom 7 Smart TV')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0422.jpg" alt="Bedroom 7 TV" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+            </div>
+
+            <!-- Blueprint -->
+            <div id="bed7-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-seven-floorplan.svg', 'Bedroom 7 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Bedroom 7 Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-64">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-seven-floorplan.svg" alt="Bedroom 7 2D Line Graphic Floor Plan" class="max-h-56 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -971,40 +1165,57 @@
         <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm overflow-hidden p-6 sm:p-8 space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-100 pb-4">
             <div>
-              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Bed 8 • Lower Level</span>
-              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1">Family Suite (Bedroom 8)</h3>
+              <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bed 8 • Lower Level</span>
+              <h3 class="font-serif text-2xl font-bold text-stone-900 mt-1.5">Family Suite (Bedroom 8)</h3>
             </div>
-            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-xl shrink-0">Sleeps 4 (Queen + 2 Twins)</span>
+            <span class="bg-stone-100 text-stone-800 text-xs font-bold px-3.5 py-2 rounded-xl shrink-0">Sleeps 4 (Queen + 2 Twins)</span>
           </div>
 
           <p class="text-sm text-stone-600 leading-relaxed">
-            Generous exposed daylight suite with high 9-foot ceilings. Features 1 Queen bed and 2 Twin beds, Smart TV, full closet, and immediate access to the lower-level walk-in shower bath.
+            Generous garden-level suite with 9-foot ceilings and above-grade daylight windows. Features 1 Queen bed and 2 Twin beds, Smart TV, full closet, and immediate access to the lower-level walk-in shower bathroom.
           </p>
 
-          <!-- 2D Line Graphic Card -->
-          <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-eight-floorplan.svg', 'Bedroom 8 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-4 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm">
-            <div class="w-full flex items-center justify-between mb-2">
-              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-800 bg-white border border-stone-200 px-2.5 py-1 rounded-lg">
-                <i class="fa-solid fa-compass-drafting text-amber-700"></i> 2D Line Graphic Floor Plan
-              </span>
-              <span class="text-[11px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-md">
-                ● Bedroom 8 Highlighted
-              </span>
+          <!-- Progressive Disclosure: Segmented Control -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="segmented-control inline-flex">
+                <button onclick="toggleRoomView('bed8', 'photos', event)" class="segment-btn active px-4 py-2 text-xs font-bold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-camera text-amber-600"></i> Photography (4)
+                </button>
+                <button onclick="toggleRoomView('bed8', 'blueprint', event)" class="segment-btn px-4 py-2 text-xs font-semibold flex items-center gap-1.5 min-h-[38px]">
+                  <i class="fa-solid fa-compass-drafting text-amber-600"></i> 2D Floor Plan
+                </button>
+              </div>
+              <span class="text-xs text-stone-500 hidden sm:inline"><i class="fa-solid fa-arrow-pointer mr-1"></i> Tap to toggle</span>
             </div>
-            <div class="w-full flex items-center justify-center p-2 bg-white rounded-xl border border-stone-200/80 shadow-inner overflow-hidden max-h-56">
-              <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-eight-floorplan.svg" alt="Bedroom 8 2D Line Graphic Floor Plan" class="max-h-52 w-auto object-contain group-hover:scale-105 transition duration-300">
-            </div>
-            <span class="mt-2 text-[11px] text-stone-500 font-medium group-hover:text-amber-700 transition flex items-center gap-1">
-              <i class="fa-solid fa-magnifying-glass-plus"></i> Click to zoom full-screen 2D architectural line graphic
-            </span>
-          </div>
 
-          <!-- Photos -->
-          <div class="grid grid-cols-4 gap-2 pt-2">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0416.jpg', 'Bedroom 8 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0416.jpg" alt="Bedroom 8" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0412.jpg', 'Bedroom 8 Twin Beds')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0412.jpg" alt="Bedroom 8 Twins" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0411.jpg', 'Bedroom 8 Room Layout')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0411.jpg" alt="Bedroom 8 Layout" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
-            <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0414.jpg', 'Bedroom 8 Smart TV &amp; Storage')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0414.jpg" alt="Bedroom 8 TV" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90">
+            <!-- Photos -->
+            <div id="bed8-view-photos" class="grid grid-cols-4 gap-2 pt-1">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0416.jpg', 'Bedroom 8 Queen Bed')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0416.jpg" alt="Bedroom 8" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0412.jpg', 'Bedroom 8 Twin Beds')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0412.jpg" alt="Bedroom 8 Twins" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0411.jpg', 'Bedroom 8 Room Layout')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0411.jpg" alt="Bedroom 8 Layout" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+              <img onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0414.jpg', 'Bedroom 8 Smart TV &amp; Storage')" src="https://maplemanorrental.com/wp-content/uploads/2019/02/DSC_0414.jpg" alt="Bedroom 8 TV" class="rounded-xl aspect-[4/3] object-cover cursor-pointer hover:opacity-90 active:scale-95 transition">
+            </div>
+
+            <!-- Blueprint -->
+            <div id="bed8-view-blueprint" class="hidden">
+              <div onclick="openLightbox('https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-eight-floorplan.svg', 'Bedroom 8 - 2D Architectural Line Graphic Floor Plan (Highlighted in Green)')" class="relative bg-stone-50 border-2 border-amber-600/30 rounded-2xl p-5 flex flex-col items-center justify-center cursor-pointer group hover:border-amber-600 transition shadow-sm active:scale-95">
+                <div class="w-full flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-xs">
+                    <i class="fa-solid fa-compass-drafting text-amber-700"></i> Architectural 2D Line Drawing
+                  </span>
+                  <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2.5 py-1 rounded-lg">
+                    ● Bedroom 8 Highlighted
+                  </span>
+                </div>
+                <div class="w-full flex items-center justify-center p-3 bg-white rounded-xl border border-stone-200 shadow-inner overflow-hidden max-h-64">
+                  <img src="https://maplemanorrental.com/wp-content/uploads/2019/02/bedroom-eight-floorplan.svg" alt="Bedroom 8 2D Line Graphic Floor Plan" class="max-h-56 w-auto object-contain group-hover:scale-105 transition duration-300">
+                </div>
+                <span class="mt-3 text-xs text-stone-600 font-semibold group-hover:text-amber-700 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-magnifying-glass-plus"></i> Tap to inspect full-screen vector schematic
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1015,100 +1226,100 @@
     <!-- SECTION 4: SLEEPING & ROOM MATRIX (TABLE) -->
     <!-- ========================================== -->
     <section id="sleeping-matrix" class="space-y-6 pt-6 scroll-mt-36">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
+      <div class="text-center max-w-3xl mx-auto space-y-2.5">
         <span class="text-xs font-bold uppercase tracking-widest text-amber-700">Group Trip Planning Tool</span>
-        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-900">Who Sleeps Where? Sleeping Matrix</h2>
-        <p class="text-xs sm:text-sm text-stone-600">
-          Every guest sleeps in an authentic, high-comfort bed. No fold-out sleeper sofas, rollaways, or air mattresses.
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-900">Group Sleeping Planner • Room Assignment Matrix</h2>
+        <p class="text-sm text-stone-600 leading-relaxed">
+          Designed for trip coordinators to effortlessly allocate bedrooms across multiple families, couples, and children. Every guest sleeps in an authentic, high-comfort bed.
         </p>
       </div>
 
       <div class="bg-white rounded-3xl border border-stone-200/90 shadow-md overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs sm:text-sm text-stone-700">
-            <thead class="bg-stone-900 text-white uppercase text-[11px] tracking-wider">
+            <thead class="bg-stone-900 text-white uppercase text-xs tracking-wider">
               <tr>
-                <th scope="col" class="py-3.5 px-4 sm:px-6">Room / Suite</th>
-                <th scope="col" class="py-3.5 px-4">Level</th>
-                <th scope="col" class="py-3.5 px-4">Bed Configuration</th>
-                <th scope="col" class="py-3.5 px-4">Bathroom Setup</th>
-                <th scope="col" class="py-3.5 px-4">Key Amenities</th>
-                <th scope="col" class="py-3.5 px-4 text-center">Sleeps</th>
+                <th scope="col" class="py-4 px-4 sm:px-6">Room / Suite</th>
+                <th scope="col" class="py-4 px-4">Level</th>
+                <th scope="col" class="py-4 px-4">Bed Configuration</th>
+                <th scope="col" class="py-4 px-4">Bathroom Setup</th>
+                <th scope="col" class="py-4 px-4">Key Amenities</th>
+                <th scope="col" class="py-4 px-4 text-center">Sleeps</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-stone-100 font-medium">
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Grand Master Suite (BR 1)</td>
-                <td class="py-3 px-4 text-stone-500">Main Level</td>
-                <td class="py-3 px-4">1 King Bed</td>
-                <td class="py-3 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-bold px-2 py-0.5 rounded">Ensuite Jacuzzi + Dual Sinks</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">Gas Fireplace, Private Deck Walkout, Mini-bar, 50&quot; TV</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">2</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Grand Master Suite (BR 1)</td>
+                <td class="py-3.5 px-4 text-stone-500">Main Level</td>
+                <td class="py-3.5 px-4">1 King Bed</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">Ensuite Jacuzzi + Dual Sinks</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">Gas Fireplace, Private Deck Walkout, Mini-bar, 50&quot; TV</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">2</td>
               </tr>
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Bedroom 2 (West Wing)</td>
-                <td class="py-3 px-4 text-stone-500">Main Level</td>
-                <td class="py-3 px-4">1 King Bed</td>
-                <td class="py-3 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-bold px-2 py-0.5 rounded">Ensuite Jacuzzi Tub/Shower</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">Electric Fireplace, Work Desk, Smart TV, Armchair</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">2</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Bedroom 2 (West Wing)</td>
+                <td class="py-3.5 px-4 text-stone-500">Main Level</td>
+                <td class="py-3.5 px-4">1 King Bed</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">Ensuite Jacuzzi Tub/Shower</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">Electric Fireplace, Work Desk, Smart TV, Armchair</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">2</td>
               </tr>
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Bedroom 3 (West Wing)</td>
-                <td class="py-3 px-4 text-stone-500">Main Level</td>
-                <td class="py-3 px-4">1 Queen Bed</td>
-                <td class="py-3 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-bold px-2 py-0.5 rounded">Ensuite Jacuzzi Tub/Shower</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">Electric Fireplace, Work Desk, Smart TV, Armchair</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">2</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Bedroom 3 (West Wing)</td>
+                <td class="py-3.5 px-4 text-stone-500">Main Level</td>
+                <td class="py-3.5 px-4">1 Queen Bed</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">Ensuite Jacuzzi Tub/Shower</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">Electric Fireplace, Work Desk, Smart TV, Armchair</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">2</td>
               </tr>
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Bedroom 4 (East Wing)</td>
-                <td class="py-3 px-4 text-stone-500">Main Level</td>
-                <td class="py-3 px-4">1 King Bed</td>
-                <td class="py-3 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-bold px-2 py-0.5 rounded">Ensuite Jacuzzi Tub/Shower</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">Built-in Bookcases, Walk-in Closet, Fireplace, Desk</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">2</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Bedroom 4 (East Wing)</td>
+                <td class="py-3.5 px-4 text-stone-500">Main Level</td>
+                <td class="py-3.5 px-4">1 King Bed</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">Ensuite Jacuzzi Tub/Shower</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">Built-in Bookcases, Walk-in Closet, Fireplace, Desk</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">2</td>
               </tr>
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Bedroom 5 + 3rd Floor Loft</td>
-                <td class="py-3 px-4 text-stone-500">2nd &amp; 3rd Floors</td>
-                <td class="py-3 px-4">1 Queen Bed + 1 Full (Loft)</td>
-                <td class="py-3 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-bold px-2 py-0.5 rounded">Ensuite Jacuzzi Tub/Shower</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">Dedicated Staircase, Loft Bed, Sofa, Fireplace, Connecting Door</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">4</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Bedroom 5 + 3rd Floor Loft</td>
+                <td class="py-3.5 px-4 text-stone-500">2nd &amp; 3rd Floors</td>
+                <td class="py-3.5 px-4">1 Queen Bed + 1 Full (Loft)</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">Ensuite Jacuzzi Tub/Shower</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">Dedicated Staircase, Loft Bed, Sofa, Fireplace, Connecting Door</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">4</td>
               </tr>
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Bedroom 6 + 3rd Floor Loft</td>
-                <td class="py-3 px-4 text-stone-500">2nd &amp; 3rd Floors</td>
-                <td class="py-3 px-4">1 Queen Bed + 1 Full (Loft)</td>
-                <td class="py-3 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-bold px-2 py-0.5 rounded">Ensuite Jacuzzi Tub/Shower</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">Dedicated Staircase, Loft Bed, Sofa, Fireplace, Connecting Door</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">4</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Bedroom 6 + 3rd Floor Loft</td>
+                <td class="py-3.5 px-4 text-stone-500">2nd &amp; 3rd Floors</td>
+                <td class="py-3.5 px-4">1 Queen Bed + 1 Full (Loft)</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">Ensuite Jacuzzi Tub/Shower</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">Dedicated Staircase, Loft Bed, Sofa, Fireplace, Connecting Door</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">4</td>
               </tr>
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Family Suite (Bedroom 7)</td>
-                <td class="py-3 px-4 text-stone-500">Lower Level</td>
-                <td class="py-3 px-4">1 Queen Bed + 2 Twin Beds</td>
-                <td class="py-3 px-4"><span class="inline-block bg-stone-100 text-stone-700 text-[11px] font-bold px-2 py-0.5 rounded">Lower Full Bath (Walk-in Shower)</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">9-ft Ceilings, Daylight Windows, Smart TV, Steps to Rec Room</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">4</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Family Suite (Bedroom 7)</td>
+                <td class="py-3.5 px-4 text-stone-500">Lower Level</td>
+                <td class="py-3.5 px-4">1 Queen Bed + 2 Twin Beds</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-stone-100 text-stone-700 text-xs font-bold px-2.5 py-1 rounded-lg">Lower Full Bath (Walk-in Shower)</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">9-ft Ceilings, Above-Grade Daylight, Smart TV, Steps to Rec Room</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">4</td>
               </tr>
               <tr class="hover:bg-amber-50/40 transition">
-                <td class="py-3 px-4 sm:px-6 font-bold text-stone-900">Family Suite (Bedroom 8)</td>
-                <td class="py-3 px-4 text-stone-500">Lower Level</td>
-                <td class="py-3 px-4">1 Queen Bed + 2 Twin Beds</td>
-                <td class="py-3 px-4"><span class="inline-block bg-stone-100 text-stone-700 text-[11px] font-bold px-2 py-0.5 rounded">Lower Full Bath (Walk-in Shower)</span></td>
-                <td class="py-3 px-4 text-xs text-stone-500">9-ft Ceilings, Daylight Windows, Smart TV, Steps to Rec Room</td>
-                <td class="py-3 px-4 text-center font-bold text-stone-900">4</td>
+                <td class="py-3.5 px-4 sm:px-6 font-bold text-stone-900">Family Suite (Bedroom 8)</td>
+                <td class="py-3.5 px-4 text-stone-500">Lower Level</td>
+                <td class="py-3.5 px-4">1 Queen Bed + 2 Twin Beds</td>
+                <td class="py-3.5 px-4"><span class="inline-block bg-stone-100 text-stone-700 text-xs font-bold px-2.5 py-1 rounded-lg">Lower Full Bath (Walk-in Shower)</span></td>
+                <td class="py-3.5 px-4 text-xs text-stone-500">9-ft Ceilings, Above-Grade Daylight, Smart TV, Steps to Rec Room</td>
+                <td class="py-3.5 px-4 text-center font-bold text-stone-900 text-sm">4</td>
               </tr>
             </tbody>
-            <tfoot class="bg-stone-50 border-t-2 border-stone-200 text-xs font-bold text-stone-900">
+            <tfoot class="bg-stone-50 border-t-2 border-stone-200 text-xs sm:text-sm font-bold text-stone-900">
               <tr>
-                <td class="py-3.5 px-4 sm:px-6" colspan="2">TOTAL ESTATE CAPACITY</td>
-                <td class="py-3.5 px-4">4 Kings, 3 Queens, 2 Fulls, 4 Twins</td>
-                <td class="py-3.5 px-4">7 Full Baths + 1 Powder Bath</td>
-                <td class="py-3.5 px-4 text-stone-600">7,000 sq ft across 3 levels</td>
-                <td class="py-3.5 px-4 text-center text-base text-amber-700 font-extrabold">Sleeps 22</td>
+                <td class="py-4 px-4 sm:px-6" colspan="2">TOTAL ESTATE CAPACITY</td>
+                <td class="py-4 px-4">4 Kings, 3 Queens, 2 Fulls, 4 Twins</td>
+                <td class="py-4 px-4">7 Full Baths + 1 Powder Bath</td>
+                <td class="py-4 px-4 text-stone-600">7,000 sq ft across 3 levels</td>
+                <td class="py-4 px-4 text-center text-base text-amber-700 font-extrabold">Sleeps 22</td>
               </tr>
             </tfoot>
           </table>
@@ -1121,7 +1332,7 @@
     <!-- ========================================== -->
     <section class="bg-gradient-to-tr from-stone-900 via-stone-800 to-amber-950 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
       <div class="relative z-10 max-w-3xl space-y-4">
-        <span class="inline-flex items-center gap-1.5 bg-amber-600/90 text-amber-100 text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-full">
+        <span class="inline-flex items-center gap-1.5 bg-amber-600/90 text-amber-100 text-xs uppercase tracking-wider font-bold px-3.5 py-1.5 rounded-full">
           <i class="fa-solid fa-shield-halved"></i> Direct Booking Price Guarantee
         </span>
         <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
@@ -1131,13 +1342,13 @@
           Reserve directly with the owners of Maple Manor and save between $1,200 and $2,800+ per stay by completely eliminating Airbnb and VRBO platform traveler fees.
         </p>
         <div class="pt-4 flex flex-wrap items-center gap-3">
-          <a href="/#book" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-amber-600/30 transition hover:scale-[1.02] active:scale-[0.98]">
+          <a href="/#book" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-amber-600/30 transition hover:scale-[1.02] active:scale-[0.98] min-h-[44px]">
             <i class="fa-regular fa-calendar-check"></i> Check Live Availability &amp; Rates
           </a>
-          <a href="tel:9203416608" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-5 py-3.5 rounded-xl border border-white/20 transition">
+          <a href="tel:9203416608" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-5 py-3.5 rounded-xl border border-white/20 transition min-h-[44px]">
             <i class="fa-solid fa-phone text-amber-300"></i> (920) 341-6608
           </a>
-          <button onclick="openEmailModal(event)" class="inline-flex items-center gap-2 text-stone-300 hover:text-white underline text-sm px-3 py-2 transition">
+          <button onclick="openEmailModal(event)" class="inline-flex items-center gap-2 text-stone-300 hover:text-white underline text-sm px-3.5 py-2.5 transition min-h-[44px]">
             <i class="fa-regular fa-envelope"></i> Send an Inquiry
           </button>
         </div>
@@ -1161,13 +1372,13 @@
         </div>
 
         <div class="flex flex-wrap gap-4 text-xs font-medium text-stone-400">
-          <a href="/" class="hover:text-white transition">Home</a>
-          <a href="/floor-plan" class="hover:text-white text-amber-400 transition font-bold">2D Floor Plans</a>
-          <a href="/#rooms" class="hover:text-white transition">8 Bedrooms</a>
-          <a href="/#gameroom" class="hover:text-white transition">Game Room</a>
-          <a href="/#gallery" class="hover:text-white transition">Photo Gallery</a>
-          <a href="/#reviews" class="hover:text-white transition">Reviews</a>
-          <a href="/#faq" class="hover:text-white transition">FAQ</a>
+          <a href="/" class="hover:text-white transition py-1">Home</a>
+          <a href="/floor-plan" class="hover:text-white text-amber-400 transition font-bold py-1">2D Floor Plans</a>
+          <a href="/#rooms" class="hover:text-white transition py-1">8 Bedrooms</a>
+          <a href="/#gameroom" class="hover:text-white transition py-1">Game Room</a>
+          <a href="/#gallery" class="hover:text-white transition py-1">Photo Gallery</a>
+          <a href="/#reviews" class="hover:text-white transition py-1">Reviews</a>
+          <a href="/#faq" class="hover:text-white transition py-1">FAQ</a>
         </div>
       </div>
 
@@ -1178,65 +1389,89 @@
     </div>
   </footer>
 
-  <!-- Lightbox Modal for Photo & SVG Zooming -->
-  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl transition">
+  <!-- Lightbox Modal for Photo & SVG Zooming (Apple HIG Accessible & Keyboard Esc) -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+    <button onclick="closeLightbox()" class="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 active:scale-95 text-white text-2xl transition flex items-center justify-center shadow-lg" aria-label="Close dialog">
       <i class="fa-solid fa-xmark"></i>
     </button>
     <div class="max-w-5xl max-h-[90vh] flex flex-col items-center">
-      <div class="bg-white/5 p-4 rounded-2xl border border-white/10 flex items-center justify-center">
-        <img id="lightbox-img" src="" alt="Zoomed View" class="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl">
+      <div class="bg-white/5 p-4 sm:p-6 rounded-3xl border border-white/10 flex items-center justify-center shadow-2xl">
+        <img id="lightbox-img" src="" alt="Zoomed View" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl">
       </div>
-      <p id="lightbox-caption" class="text-stone-300 text-sm mt-3 font-medium text-center"></p>
+      <p id="lightbox-caption" class="text-stone-200 text-sm mt-3.5 font-medium text-center max-w-2xl px-4"></p>
     </div>
   </div>
 
   <!-- Email Modal -->
-  <div id="email-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+  <div id="email-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative">
-      <button onclick="closeEmailModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-700 text-xl">
+      <button onclick="closeEmailModal()" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 active:scale-95 text-stone-500 hover:text-stone-800 text-lg transition flex items-center justify-center" aria-label="Close contact dialog">
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div class="space-y-1">
         <span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Contact the Owners</span>
         <h3 class="font-serif text-2xl font-bold text-stone-900">Send an Inquiry</h3>
-        <p class="text-xs text-stone-500">Have questions about room arrangements or specific dates? We reply promptly.</p>
+        <p class="text-xs text-stone-600">Have questions about bedroom allocations or specific group dates? We respond promptly.</p>
       </div>
-      <form onsubmit="handleInquirySubmit(event)" class="space-y-3">
+      <form onsubmit="handleInquirySubmit(event)" class="space-y-3.5">
         <div>
           <label class="block text-xs font-bold text-stone-700 mb-1">Your Name</label>
-          <input type="text" required placeholder="First and last name" class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-600">
+          <input type="text" required placeholder="First and last name" class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-600 min-h-[44px]">
         </div>
         <div>
           <label class="block text-xs font-bold text-stone-700 mb-1">Email Address</label>
-          <input type="email" required placeholder="you@domain.com" class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-600">
+          <input type="email" required placeholder="you@domain.com" class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-600 min-h-[44px]">
         </div>
         <div>
           <label class="block text-xs font-bold text-stone-700 mb-1">Estimated Dates &amp; Group Size</label>
-          <input type="text" placeholder="e.g. July 12-18, ~16 guests" class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-600">
+          <input type="text" placeholder="e.g. July 12-18, ~16 guests" class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-600 min-h-[44px]">
         </div>
         <div>
           <label class="block text-xs font-bold text-stone-700 mb-1">Your Message</label>
           <textarea rows="3" required placeholder="Tell us about your trip..." class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-600"></textarea>
         </div>
-        <button type="submit" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs py-3 rounded-xl shadow-md transition">
+        <button type="submit" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs py-3.5 rounded-xl shadow-md transition active:scale-[0.98] min-h-[44px]">
           Send Message Directly to Owners
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Client-Side Scripts -->
+  <!-- Client-Side Scripts (Progressive Disclosure & Keyboard Listeners) -->
   <script>
+    // Progressive Disclosure: Toggle between Photos and 2D Blueprint per room
+    function toggleRoomView(roomPrefix, viewType, event) {
+      if (event) {
+        const parent = event.currentTarget.closest('.segmented-control');
+        if (parent) {
+          parent.querySelectorAll('.segment-btn').forEach(btn => btn.classList.remove('active'));
+          event.currentTarget.classList.add('active');
+        }
+      }
+
+      const photosView = document.getElementById(`${roomPrefix}-view-photos`);
+      const blueprintView = document.getElementById(`${roomPrefix}-view-blueprint`);
+
+      if (viewType === 'photos') {
+        if (photosView) photosView.classList.remove('hidden');
+        if (blueprintView) blueprintView.classList.add('hidden');
+      } else {
+        if (photosView) photosView.classList.add('hidden');
+        if (blueprintView) blueprintView.classList.remove('hidden');
+      }
+    }
+
     // Level Switcher Tabs
     function filterLevel(level, event) {
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active', 'bg-amber-700', 'text-white');
         btn.classList.add('bg-stone-100', 'text-stone-700');
+        btn.setAttribute('aria-selected', 'false');
       });
       if (event) {
         event.currentTarget.classList.add('active', 'bg-amber-700', 'text-white');
         event.currentTarget.classList.remove('bg-stone-100', 'text-stone-700');
+        event.currentTarget.setAttribute('aria-selected', 'true');
       }
 
       const sections = document.querySelectorAll('.level-section');
@@ -1259,10 +1494,12 @@
       document.querySelectorAll('.blueprint-tab').forEach(btn => {
         btn.classList.remove('active', 'bg-amber-600', 'text-white');
         btn.classList.add('bg-stone-800', 'text-stone-300');
+        btn.setAttribute('aria-selected', 'false');
       });
       if (event) {
         event.currentTarget.classList.add('active', 'bg-amber-600', 'text-white');
         event.currentTarget.classList.remove('bg-stone-800', 'text-stone-300');
+        event.currentTarget.setAttribute('aria-selected', 'true');
       }
 
       document.querySelectorAll('.blueprint-panel').forEach(p => p.classList.add('hidden'));
@@ -1270,7 +1507,7 @@
       if (target) target.classList.remove('hidden');
     }
 
-    // Lightbox Zoom
+    // Lightbox Zoom (with ESC key listener)
     function openLightbox(src, caption) {
       const modal = document.getElementById('lightbox-modal');
       const img = document.getElementById('lightbox-img');
@@ -1289,6 +1526,14 @@
 
     document.getElementById('lightbox-modal').addEventListener('click', (e) => {
       if (e.target.id === 'lightbox-modal') closeLightbox();
+    });
+
+    // Keyboard ESC listener
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeEmailModal();
+      }
     });
 
     // Mobile Hamburger Menu
